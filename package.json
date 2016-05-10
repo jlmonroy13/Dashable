@@ -1,0 +1,30 @@
+{
+  "name": "Starter-Project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Selvio/Starter-Project.git"
+  },
+  "author": "Selvio Pérez - Jorge Monroy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Selvio/Starter-Project/issues"
+  },
+  "homepage": "https://github.com/Selvio/Starter-Project#readme",
+  "dependencies": {
+    "grunt": "^0.4.5"
+  },
+  "devDependencies": {
+    "grunt-autoprefixer": "^3.0.4",
+    "grunt-browser-sync": "^2.2.0",
+    "grunt-contrib-concat": "^1.0.0",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-uglify": "^1.0.1",
+    "grunt-contrib-watch": "^0.6.1"
+  }
+}

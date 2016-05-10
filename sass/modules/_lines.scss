@@ -1,0 +1,29 @@
+.line {
+	height: 2px;	
+	background-color: $brand-default;
+	position: absolute;
+	display: inline-block;
+	&--top {
+		width: 30vw;
+		top: 200px;
+	}
+	&--middle {
+		width: 70vw;
+		top: 505px;
+		right: 0;
+	}
+}
+
+.main {
+	&__container {
+		position: absolute;
+		top: 190px;
+		left: 30vw;
+	}
+	&__title {
+		text-align: right;
+		p {
+			margin: 0;
+		}
+	}
+}

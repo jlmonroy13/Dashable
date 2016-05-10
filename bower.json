@@ -1,0 +1,21 @@
+{
+  "name": "Starter-Project",
+  "description": "",
+  "main": "application/index.html",
+  "authors": [
+    "Selvio Pérez - Jorge Monroy"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/Selvio/Starter-Project",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.3"
+  }
+}
