@@ -1,0 +1,102 @@
+.quote {
+    position: absolute;
+    top: 12.5vh;
+    width: 100vw;
+  &__title{
+    text-align: right;
+    font-size: 8.571rem;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin: 0;
+    position: relative;
+    right: 50vw;
+  }
+  &__text {
+    margin: 0;
+    line-height: 0.8;
+    &--small-size {
+      font-size: 3.857rem;
+    }
+    &--blue {
+      color: $brand-primary;
+    }
+  }
+  &__author {
+    font-size: 1rem;
+    color: $gray-dark;
+    font-style: italic;
+    font-family: 'Georgia';
+    text-transform: capitalize;
+  }
+}
+.line-home {
+  height: 2px;  
+  background-color: $brand-default;
+  position: absolute;
+  display: inline-block;
+  &--top {
+    width: 30vw;
+    top: 50px;
+  }
+  &--middle {
+    width: 72vw;
+    bottom: 108px;
+    right: 0;
+  }
+}
+.logo {
+  position: absolute;
+  bottom: 30px;
+  right: 50%;
+  transform: translateX(50%);
+}
+
+.g-signin2 {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  .abcRioButton {
+    position: absolute;
+    height: 100% !important;
+    width: 100% !important;
+    opacity: 0;
+  }
+}
+.google-signin {
+  position: absolute;
+  top: 40%;
+  left: 49%;
+  padding: 40px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.3);
+  transition: 0.5s;
+  &:hover {
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  }
+  &__aux-text {
+    font-size: 0.857rem;
+    color: $gray-dark;
+    margin: 0;
+  }
+  &__text {
+    font-size: 1.142rem;
+    color: $gray-darker;
+    vertical-align: middle;
+  }
+  &__image {
+    vertical-align: middle;
+  }
+}
+
+
+
+
+
+
+
+
+
+

@@ -33,8 +33,7 @@ module.exports = function(grunt) {
       },
       dist: {
         src: [
-          'bower_components/jquery/dist/jquery.js',
-          'bower_components/Materialize/bin/materialize.js'
+          'bower_components/jquery/dist/jquery.js'
         ], 
         dest: 'application/assets/javascripts/vendor/bundle.js'
       },

@@ -1,9 +1,7 @@
-// Materialize
-@import "core/Materialize";
 
 // Settings
 @import "settings/colors";
-@import "settings/variables";
+@import "settings/variables"; 
 
 // Core styles
 @import "core/core";
@@ -12,6 +10,7 @@
 
 // Modules
 @import "modules/lines";
+@import "modules/main-page";
 
 
 

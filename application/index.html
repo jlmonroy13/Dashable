@@ -8,26 +8,40 @@
   <meta name="author" content="" />
   <meta name="keywords" content="" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Google meta tag -->
+  <meta name="google-signin-client_id" content="472489925421-4nneiigbb14o9bm51co2v6687vic3pft.apps.googleusercontent.com">
   <link rel="icon" href="assets/images/favicon.png" />
   <link rel="stylesheet" href="assets/stylesheet/main.min.css" />
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,700,900italic,900,700italic,500italic,400italic,300italic,100italic,100' rel='stylesheet' type='text/css'>
 </head>
 <body>
-	
-	<div class="main__container">
-		<h1 class="main__title">
-			<p>lost</p>
-			<p>time</p>
-			<p>is never</p>
-			<p>found</p>
-			<p>again</p>
+	<div class="quote">
+		<h1 class="quote__title">
+			<p class="quote__text quote__text--small-size">lost</p>
+			<p class="quote__text">time</p>
+			<p class="quote__text quote__text--small-size quote__text--blue">is never</p>
+			<p class="quote__text">found</p>
+			<p class="quote__text">again</p>
+      <p class="quote__author">- benjamin franklin</p>
 		</h1>
-		<p>- benjamin franklin</p>
+    <span class="line-home line-home--top"></span>
+    <span class="line-home line-home--middle"></span>
+    <div class="google-signin">
+      <div class="g-signin2" data-onsuccess="onSignIn"></div>
+      <p class="google-signin__aux-text">Want to Check-in?</p>
+      <div class="google-signin__text">
+        <span class="google-signin__text">Sign in with your </span>
+        <img class="google-signin__image" src="assets/images/google-logo.svg" alt="Google Logo" />
+        <span class="google-signin__text"> account</span>
+        <img class="google-signin__image" src="assets/images/continue-arrow.svg" alt="Continue arrow">
+      </div>
+    </div>
 	</div>
+  <img src="assets/images/koombea-logo.svg" alt="Koombea Logo" class="logo" />
 
 
-	<span class="line line--top"></span>
-	<span class="line line--middle"></span>
-	<script src="assets/javascripts/vendor/bundle.js"></script>
+  <script src="assets/javascripts/vendor/bundle.js"></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
   <script src="assets/javascripts/application.min.js"></script>
 </body>
 </html>
