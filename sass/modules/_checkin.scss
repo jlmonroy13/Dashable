@@ -1,0 +1,30 @@
+.container {
+  width: 80%;
+  max-width: 519px;
+  min-width: 323px;
+  margin: 0 auto;
+  padding: 0 15px;
+  &__title {
+    font-size: 2.571rem; //36px mobile
+    color: $brand-primary;
+    font-weight: 500;
+    text-transform: uppercase;
+    max-width: 225px;
+    line-height: 0.9;
+  }
+  &__subtitle {
+    font-size: 1.714rem; //24px mobile
+    color: $title-color;
+  }
+  &__form {
+    background: url('../images/checkin-bg.jpg') no-repeat;
+    background-size: center;
+    height: 600px;
+  }
+}
+
+.input {
+  &__label {
+    display: inline-block;
+  }
+}

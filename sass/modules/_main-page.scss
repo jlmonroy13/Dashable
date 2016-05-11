@@ -4,18 +4,33 @@
     width: 100vw;
   &__title{
     text-align: right;
-    font-size: 8.571rem;
+    font-size: 7.857rem;
     text-transform: uppercase;
-    font-weight: 400;
+    font-weight: 500;
     margin: 0;
     position: relative;
-    right: 50vw;
+    right: 55.5vw;
+    @media(max-width: 830px) {
+      right: 40.5vw;
+    }
+    @media(max-width: 620px) {
+      right: 30.5vw;
+    }
+    @media(max-width: 520px) {
+      font-size: 5.714rem;
+    }
+    @media(max-width: 400px) {
+      right: 18.5vw; 
+    }
   }
   &__text {
     margin: 0;
     line-height: 0.8;
     &--small-size {
-      font-size: 3.857rem;
+      font-size: 3.571rem;
+      @media(max-width: 520px) {
+        font-size: 2.428rem;
+      } 
     }
     &--blue {
       color: $brand-primary;
@@ -29,21 +44,7 @@
     text-transform: capitalize;
   }
 }
-.line-home {
-  height: 2px;  
-  background-color: $brand-default;
-  position: absolute;
-  display: inline-block;
-  &--top {
-    width: 30vw;
-    top: 50px;
-  }
-  &--middle {
-    width: 72vw;
-    bottom: 108px;
-    right: 0;
-  }
-}
+
 .logo {
   position: absolute;
   bottom: 30px;
@@ -51,47 +52,9 @@
   transform: translateX(50%);
 }
 
-.g-signin2 {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  .abcRioButton {
-    position: absolute;
-    height: 100% !important;
-    width: 100% !important;
-    opacity: 0;
-  }
-}
-.google-signin {
-  position: absolute;
-  top: 40%;
-  left: 49%;
-  padding: 40px;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.3);
-  transition: 0.5s;
-  &:hover {
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-  }
-  &__aux-text {
-    font-size: 0.857rem;
-    color: $gray-dark;
-    margin: 0;
-  }
-  &__text {
-    font-size: 1.142rem;
-    color: $gray-darker;
-    vertical-align: middle;
-  }
-  &__image {
-    vertical-align: middle;
-  }
-}
 
 
+    
 
 
 

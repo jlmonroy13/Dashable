@@ -1,0 +1,61 @@
+.g-signin2 {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  .abcRioButton {
+    position: absolute;
+    height: 100% !important;
+    width: 100% !important;
+    opacity: 0;
+  }
+}
+.google-signin {
+  position: absolute;
+  top: 40%;
+  left: 43.5%;
+  padding: 2.142em;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.3);
+  transition: 0.5s;
+  z-index: 3;
+  &:hover {
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  }
+  &__aux-text {
+    font-size: 0.857rem;
+    color: $gray-dark;
+    margin: 0;
+  }
+  &__text {
+    font-size: 1.142rem;
+    color: $gray-darker;
+    vertical-align: middle;
+    @media(max-width: 520px) {
+      font-size: 1rem;
+    } 
+  }
+  &__image {
+    vertical-align: middle;
+  }
+  @media(max-width: 830px) {
+    max-width: 170px;
+    line-height: 1.2;
+    left: 57.5%;
+  }
+  @media(max-width: 620px) {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -135px;
+    top: initial;
+    width: 100%;
+    max-width: 291px;
+  }
+  @media(max-width: 520px) {
+    max-width: 267px;
+    padding: 1.428em 2.142em;
+    bottom: -90px;
+  }
+}

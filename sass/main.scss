@@ -5,12 +5,16 @@
 
 // Core styles
 @import "core/core";
+@import "core/grid";
 @import "core/font-icons";
 @import "core/fonts";
+@import "core/owl.carousel";
 
 // Modules
-@import "modules/lines";
 @import "modules/main-page";
+@import "modules/lines";
+@import "modules/google-button";
+@import "modules/checkin";
 
 
 

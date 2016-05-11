@@ -1,0 +1,36 @@
+.line-home {
+  height: 2px;  
+  background-color: $brand-default;
+  position: absolute;
+  display: inline-block;
+  z-index: 2;
+  &--top {
+    width: 30vw;
+    top: 39px;
+    @media(max-width: 520px) {
+      width: 40vw;
+      top: 26px;
+    }
+    @media(min-width: 1650px) {
+      width: 34vw;
+    }
+  }
+  &--middle {
+    width: 73vw;
+    top: 56vh;
+    right: 0;
+    @media(max-width: 520px) {
+      width: 62vw;
+      top: 43vh;
+    }
+    @media(max-width: 399px) {
+      top: 53vh;
+    }
+    @media(min-height: 700px) {
+      top: 43vh;
+    }
+    @media(min-width: 1650px) {
+      width: 67vw;
+    }
+  }
+}
