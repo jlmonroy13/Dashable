@@ -1,0 +1,47 @@
+.calendar {
+  margin-bottom: 30px;
+  &__title {
+    margin-top: 0;
+    color: $brand-active;
+    font-size: 0.857rem;
+    text-transform: capitalize;
+    margin-bottom: 10px;
+  }
+  &__item {
+    width: 38px;
+    padding: 0.357rem 0;
+    background-color: rgba($brand-default, 0.2);
+    text-align: center;
+    margin: auto;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    width: 35px;
+    &--actual {
+      border: 1px solid $brand-active;
+    }
+    &--done {
+      border: 1px solid $brand-active;
+      background-color: $brand-active;
+    }
+  }
+  &__month {
+    text-transform: capitalize; 
+    font-size: 0.857rem;
+    color: $brand-info;
+    margin-left: 5px;
+  }
+}
+.item {
+  display: block;
+  &--day {
+    font-size: 0.857rem;
+    color: $brand-info;
+    margin-bottom: 5px;
+    text-transform: capitalize; 
+  }
+  &--day-number {
+    font-size: 1rem;
+    color: $brand-info;
+    font-weight: 600;
+  }
+}

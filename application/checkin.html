@@ -16,52 +16,89 @@
   <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,700,900italic,900,700italic,500italic,400italic,300italic,100italic,100' rel='stylesheet' type='text/css'>
 </head>
 <body>
-  
   <div class="container">
     <div class="container__header">
       <h1 class="container__title">
         <span class="container__subtitle">today's</span>
         check-in
       </h1>
-      <img src="assets/images/mobile-btn.svg" alt="Mobile button hamburger" />
+      <img class="button-menu-mobile" src="assets/images/mobile-btn.svg" alt="Mobile button hamburger" />
     </div>
     <div class="container__form">
-      <form action="">
-        <div class="input__group">
-          <input class="input" id="project" type="text" />
-          <label class="input__label" for="project">project</label>
-        </div>
-        <div class="grid">
-          <div class="grid__item one-half">
-            <div class="input__group">
-              <input class="input" id="task" type="text" />
-              <label class="input__label" for="task">task</label>
-            </div>
-          </div><!-- 
-           --><div class="grid__item one-half">  
-            <div class="input__group">
-              <input class="input" id="duration" type="text" />
-              <label class="input__label" for="duration">duration</label>
-            </div>
-          </div>  
-        </div>
-        <div class="input__group">
-          <input class="input" id="workon" type="text" />
-          <label class="input__label" for="workon">what did you work on?</label>
-        </div>
-        <div class="calendar">
-          <h2>date</h2>
-          <div class="owl-carousel">
-            <div>Your Content</div>
-            <div>Your Content</div>
-            <div>Your Content</div>
-            <div>Your Content</div>
-            <div>Your Content</div>
-            <div>Your Content</div>
-            <div>Your Content</div>
+      <form class="form" action="">
+        <div class="form-padding">
+          <div class="input__group">
+            <input class="input" id="project" type="text" />
+            <label class="input__label" for="project">project</label>
           </div>
-        </div>
-        <button>add check-in</button>
+          <div class="input__group input__group--large">
+            <input class="input" id="task" type="text" />
+            <label class="input__label" for="task">task</label>
+          </div><!-- 
+           --><div class="input__group input__group--small">
+            <input class="input" id="duration" type="text" />
+            <label class="input__label" for="duration">duration</label>
+          </div>
+          <div class="input__group">
+            <input class="input" id="workon" type="text" />
+            <label class="input__label" for="workon">what did you work on?</label>
+          </div>
+          <div class="calendar">
+            <h2 class="calendar__title">date</h2>
+            <p class="calendar__month">may</p>
+            <div class="owl-carousel">
+              <div class="calendar__item calendar__item--done">
+                <span class="item item--day">m</span> 
+                <span class="item item--day-number">25</span>
+              </div>
+              <div class="calendar__item calendar__item--done">
+                <span class="item item--day">tu</span> 
+                <span class="item item--day-number">26</span>
+              </div>
+              <div class="calendar__item">
+                <span class="item item--day">w</span>
+                <span class="item item--day-number">27</span>
+              </div>
+              <div class="calendar__item">
+                <span class="item item--day">th</span>
+                <span class="item item--day-number">28</span>
+              </div>
+              <div class="calendar__item">
+                <span class="item item--day">f</span>
+                <span class="item item--day-number">29</span>
+              </div>
+              <div class="calendar__item">
+                <span class="item item--day">sa</span>
+                <span class="item item--day-number">30</span>
+              </div>
+              <div class="calendar__item calendar__item--done">
+                <span class="item item--day">m</span>
+                <span class="item item--day-number">02</span>
+              </div>
+              <div class="calendar__item calendar__item--done">
+                <span class="item item--day">tu</span> 
+                <span class="item item--day-number">03</span>
+              </div>
+              <div class="calendar__item calendar__item--actual">
+                <span class="item item--day">w</span>
+                <span class="item item--day-number">04</span>
+              </div>
+              <div class="calendar__item">
+                <span class="item item--day">th</span>
+                <span class="item item--day-number">05</span>
+              </div>
+              <div class="calendar__item">
+                <span class="item item--day">fr</span>
+                <span class="item item--day-number">06</span>
+              </div>
+              <div class="calendar__item">
+                <span class="item item--day">sa</span>
+                <span class="item item--day-number">07</span>
+              </div>
+            </div>
+          </div>
+        </div>  
+        <button class="button-submit" type="submit">add check-in</button>
       </form>
       <ul class="hidden">
         <li><a href=""><i></i><span>New Check-in</span></a></li>
@@ -70,7 +107,10 @@
       </ul>
     </div>
   </div>
-
+  <span class="line line--left"></span>
+  <span class="circle circle--left"></span>
+  <span class="line line--right"></span>
+  <span class="circle circle--right"></span>
 
 
   <img src="assets/images/koombea-logo.svg" alt="Koombea Logo" class="logo" />

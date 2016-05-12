@@ -1,0 +1,63 @@
+.input {
+  width: 97%;
+  border: 2px solid transparent;
+  border-bottom: 2px solid rgba($brand-info, 0.2);
+  background-color: transparent;
+  position: relative;
+  font-size: 1rem;
+  color: $brand-info;
+  &__group {
+    position: relative;
+    width: 100%;
+    margin-bottom: 30px;
+    display: inline-block;
+    &--large {
+      width: 60%;
+      margin-right: 20px;
+    }
+    &--small {
+      width: 30%;
+    }
+  }
+  &__label {
+    position: absolute;
+    top:0;
+    left: 0;
+    font-size: 1rem;
+    color: rgba($brand-info, 0.4);
+    text-transform: capitalize;
+    transition: 0.3s;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+.input:focus + .input__label {
+  color: $brand-active;
+  transform: scale(0.8) translateY(-22px);
+  transform-origin: center left;
+  text-transform: uppercase;
+}
+.active-input-js {
+  color: $brand-active;
+  transform: scale(0.8) translateY(-22px);
+  transform-origin: center left;
+  text-transform: uppercase;
+}
+.form-padding {
+  padding: 40px 8% 0;
+}
+.button-submit {
+  display: block;
+  text-align: center;
+  width: 100%;
+  text-transform: uppercase;
+  padding: 10px 0;
+  font-size: 1rem;
+  padding: 1.071em 0;
+  background-color: $brand-primary;
+  color: $brand-info;
+  border: 1px solid $brand-primary;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}

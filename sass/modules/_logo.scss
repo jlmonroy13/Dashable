@@ -1,0 +1,22 @@
+.logo {
+  position: absolute;
+  bottom: 20px;
+  right: 50%;
+  transform: translateX(50%);
+  @media(max-width: 400px) {
+    position: relative;
+    bottom: 0;
+    right: 0;
+    transform: translateX(0%);
+    display: block;
+    margin: 20px auto 0;
+  }
+}
+
+.logo-index {
+  position: absolute;
+  bottom: 20px;
+  right: 50%;
+  transform: translateX(50%);
+}
+
