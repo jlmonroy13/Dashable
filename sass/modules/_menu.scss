@@ -3,4 +3,7 @@
   top: 50%;
   right: 0;
   cursor: pointer;
+  @media(min-width: 401px){
+    display: none;
+  }
 }

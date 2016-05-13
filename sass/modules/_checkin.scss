@@ -1,21 +1,28 @@
 .container {
   width: 85%;
-  max-width: 519px;
-  // min-width: 323px;
+  max-width: 480px;
   margin: 0 auto;
   padding: 0 15px;
   &__title {
-    font-size: 2.142rem; //36px mobile  32 30
+    font-size: 2.142rem; // 30px mobile 
     color: $brand-primary;
     font-weight: 700;
     text-transform: uppercase;
     max-width: 183px;
     line-height: 0.9;
     margin-top: 10px;
+    @media(min-width: 401px){
+      font-size: 3.142rem; // 44px
+      max-width: 290px;
+      margin-bottom: 10px;
+    }
   }
   &__subtitle {
-    font-size: 1.285rem; //24px mobile  20 18
+    font-size: 1.428rem; // 20px mobile 
     color: $title-color;
+    @media(min-width: 401px){
+      font-size: 2.357rem; // 33px
+    }
   }
   &__form {
     background: url('../images/checkin-bg.jpg') no-repeat;

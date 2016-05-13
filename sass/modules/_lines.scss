@@ -23,7 +23,7 @@
       width: 62vw;
       top: 43vh;
     }
-    @media(max-width: 399px) {
+    @media(max-width: 400px) {
       top: 53vh;
     }
     @media(min-height: 700px) {
@@ -40,13 +40,26 @@
   position: absolute;
   display: inline-block;
   z-index: 2;
-  top: 53vh;
+  top: 56vh;
   width: 5%;
+  transition: 1s;
   &--left {
     left: 0;
   }
   &--right {
     right: 0;
+  }
+  @media(max-width: 520px) {
+    top: 43vh;
+  }
+  @media(max-width: 400px) {
+    top: 53vh;
+  }
+  @media(min-height: 700px) {
+    top: 43vh;
+  }
+  @media(min-width: 401px){
+    width: 15%;
   }
 }
 .circle {
@@ -58,12 +71,28 @@
   background-color: $brand-default;
   position: absolute;
   z-index: 2;
-  top: 53vh;
+  top: 56vh;
+  transition: 1s;
   &--left {
     left: 4%;
+    @media(min-width: 401px){
+      left: 15%;
+    }
   }
   &--right {
     right: 4%;
+    @media(min-width: 401px){
+      right: 15%;
+    }
+  }
+  @media(max-width: 520px) {
+    top: 43vh;
+  }
+  @media(max-width: 400px) {
+    top: 53vh;
+  }
+  @media(min-height: 700px) {
+    top: 43vh;
   }
 }
 

@@ -34,7 +34,8 @@ module.exports = function(grunt) {
       dist: {
         src: [
           'bower_components/jquery/dist/jquery.js',
-          'javascripts/owl.carousel.min.js'
+          'javascripts/owl.carousel.min.js',
+          'javascripts/selectize.js'
         ], 
         dest: 'application/assets/javascripts/vendor/bundle.js'
       },
