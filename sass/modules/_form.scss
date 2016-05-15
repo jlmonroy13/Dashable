@@ -79,8 +79,12 @@
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
   cursor: pointer;
+  transition: 1s;
   @media(min-width: 401px){
     padding: 1.428em 0;
+  }
+  &:hover {
+    background-color: rgba($brand-primary, 0.8);
   }
 }
 .selectize-input, 

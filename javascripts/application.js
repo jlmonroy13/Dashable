@@ -27,9 +27,9 @@ $(document).ready(function(){
     loop: false,
     margin: 5,
     startPosition: 6,
-    navText: ['<i class="sprite nav--prev"></i>','<i class="sprite nav--next"></i>'],
+    navText: ['<i class="sprite sprite--nav-prev"></i>','<i class="sprite sprite--nav-next"></i>'],
     responsive:{
-     0:{
+     0:{ 
        items:6,
        nav:true,
        dots: false

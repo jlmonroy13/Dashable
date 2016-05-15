@@ -7,3 +7,29 @@
     display: none;
   }
 }
+.navbar {
+	position: absolute;
+	top: 0;
+	right: -140px;
+  list-style: none;
+  &__items {
+    margin-bottom: 15px;
+  }
+  &__links {
+    text-decoration: none;
+    font-size: 1rem;
+    height: 17px;
+    &:hover {
+      .navbar__icon {
+        transform: scale(0.8);
+      }
+    }
+  }
+  &__text {
+    color: rgba($gray-darker, 0.4);
+    transition: 1s;
+    &--color {
+      color: $gray-darker;
+    }
+  }
+}

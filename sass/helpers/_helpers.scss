@@ -1,0 +1,16 @@
+.hide--mobile {
+	@media(max-width: 400px) {
+		display: none;
+	}
+}
+.hide--desktop {
+	@media(min-width: 401px) {
+		display: none;
+	}
+}
+.margin-right--middle {
+	margin-right: 15px;
+}
+.vertical-align {
+	vertical-align: middle;
+}

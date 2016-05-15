@@ -1,0 +1,38 @@
+.sprite {
+	background: url('../images/sprites.svg') no-repeat;
+	display: inline-block;
+	transition: 1s;
+	&--add {
+		background-position: -10px 0;
+		width: 13px;
+		height: 13px;
+		position: relative;
+    top: -1px;
+	}
+	&--history {
+		background-position: -11px -120px;
+		width: 12px;
+		height: 12px;
+	}
+	&--logout {
+		background-position: -11px -103px;
+		width: 12px;
+		height: 15px;
+		position: relative;
+    top: -1px;
+	}
+	&--nav-next {
+		background-position: -13px -73px;
+		width: 8px;
+		height: 12px;
+	}
+
+	&--nav-prev {
+		background-position: -13px -87px;
+		width: 8px;
+		height: 12px;
+	}
+}
+
+
+
