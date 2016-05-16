@@ -47,6 +47,10 @@
     font-size: 1.285rem; // 18px
   }
 }
+.form {
+  position: relative;
+  z-index: 2;
+}
 .form-padding {
   padding: 40px 8% 0;
   @media(min-width: 401px){
@@ -84,7 +88,8 @@
     padding: 1.428em 0;
   }
   &:hover {
-    background-color: rgba($brand-primary, 0.8);
+    background-color: rgba($brand-primary, 0.7);
+    border: 1px solid rgba($brand-primary, 0.7);
   }
 }
 .selectize-input, 
@@ -122,6 +127,17 @@ select {
   &:focus {
     outline: none;
   }
+}
+.form-shadow {
+  position: absolute;
+  bottom: 5px;
+  width: 85%;
+  height: 30px;
+  background-color: transparent;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 20px 40px 0px rgba(0,0,0,0.44);
+  z-index: 1;
 }
 
 

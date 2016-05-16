@@ -8,9 +8,21 @@
 		display: none;
 	}
 }
+.visibility-hidden {
+	visibility: hidden;
+}
+.hidden {
+	display: none;
+}
 .margin-right--middle {
 	margin-right: 15px;
 }
 .vertical-align {
 	vertical-align: middle;
+}
+.inline-block {
+	display: inline-block;
+}
+.top-cero {
+	top: 0;
 }

@@ -16,6 +16,15 @@
       max-width: 290px;
       margin-bottom: 10px;
     }
+    &--history {
+      color: $brand-active;
+      max-width: 160px;
+      @media(min-width: 401px){
+        font-size: 3.142rem; // 44px
+            max-width: 244px;
+        margin-bottom: 10px;
+      }
+    }
   }
   &__subtitle {
     font-size: 1.428rem; // 20px mobile 
@@ -29,9 +38,44 @@
     background-size: center;
     border-radius: 5px;
     position: relative;
+    &--done {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: $brand-active;
+      z-index: 4;
+      border-radius: 5px;
+      text-align: center;
+      transition: 1s;
+    }
+    &--icon-done {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      z-index: 5;
+      transition: 1s;
+      display: none;
+    }
+    &--text-done {
+      color: $brand-info;
+      font-size: 1.285rem;
+      font-weight: 300;
+      text-transform: capitalize;
+      margin-top: 10px;
+    }
   }
   &__header {
     position: relative;
+  }
+  &__history {
+    height: 527.91px;
+    position: relative;
+    background: $brand-info;
+    border-radius: 5px;
+    z-index: 2;
+    overflow: auto;
   }
 }
 
