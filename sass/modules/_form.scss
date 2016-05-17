@@ -40,6 +40,12 @@
       top: -10px;
     }
   }
+  &--height {
+    height: 22px;
+    @media(min-width: 401px){
+      height: 27px;
+    }
+  }
   &:focus {
     outline: none;
   }
@@ -50,6 +56,10 @@
 .form {
   position: relative;
   z-index: 2;
+  height: 373px;
+  @media(min-width: 401px){
+    height: 527.91px;
+  }
 }
 .form-padding {
   padding: 40px 8% 0;
@@ -139,7 +149,16 @@ select {
   box-shadow: 0 20px 40px 0px rgba(0,0,0,0.44);
   z-index: 1;
 }
-
+.textarea {
+  &::-webkit-scrollbar {
+    width: 5px; 
+    background-color: transparent; 
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba($brand-info, 0.4); 
+    border-radius: 10px;
+  }
+}
 
 
 

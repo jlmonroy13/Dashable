@@ -6,10 +6,10 @@
   z-index: 2;
   &--top {
     width: 30vw;
-    top: 39px;
+    top: 43px;
     @media(max-width: 520px) {
       width: 40vw;
-      top: 26px;
+      top: 30px;
     }
     @media(min-width: 1650px) {
       width: 34vw;
@@ -17,17 +17,17 @@
   }
   &--middle {
     width: 73vw;
-    top: 56vh;
+    top: 56.5vh;
     right: 0;
     @media(max-width: 520px) {
       width: 62vw;
       top: 43vh;
     }
     @media(max-width: 400px) {
-      top: 53vh;
+      top: 54.5vh;
     }
     @media(min-height: 700px) {
-      top: 43vh;
+      top: 43.5vh;
     }
     @media(min-width: 1650px) {
       width: 67vw;
@@ -40,7 +40,7 @@
   position: absolute;
   display: inline-block;
   z-index: 2;
-  top: 56vh;
+  top: 56.5vh;
   width: 5%;
   transition: 1s;
   &--left {
@@ -53,10 +53,10 @@
     top: 43vh;
   }
   @media(max-width: 400px) {
-    top: 53vh;
+    top: 54.5vh;
   }
   @media(min-height: 700px) {
-    top: 43vh;
+    top: 43.5vh;
   }
   @media(min-width: 401px){
     width: 15%;
@@ -71,7 +71,7 @@
   background-color: $brand-default;
   position: absolute;
   z-index: 2;
-  top: 56vh;
+  top: 56.5vh;
   transition: 1s;
   &--left {
     left: 4%;
@@ -89,10 +89,10 @@
     top: 43vh;
   }
   @media(max-width: 400px) {
-    top: 53vh;
+    top: 54.5vh;
   }
   @media(min-height: 700px) {
-    top: 43vh;
+    top: 43.5vh;
   }
 }
 

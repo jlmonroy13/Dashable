@@ -34,6 +34,8 @@ module.exports = function(grunt) {
       dist: {
         src: [
           'bower_components/jquery/dist/jquery.js',
+          'bower_components/angular/angular.js',
+          'bower_components/angular-route/angular-route.js',
           'javascripts/owl.carousel.min.js',
           'javascripts/selectize.js'
         ], 
@@ -51,19 +53,21 @@ module.exports = function(grunt) {
         },
         options: {
           watchTask: true,
-          server: './application'
+          server: './application',
+          port: 8080
         }
       }
     },
     uglify: {
       my_target: {
         files: {
-          'application/assets/javascripts/application.min.js': [
-            'javascripts/application.js'
+            'application/assets/javascripts/application.min.js': [
+            'javascripts/application.js',
+            'javascripts/routes.js'
           ]
         }
       }
-    }
+    },
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify');

@@ -3,6 +3,13 @@
 	display: inline-block;
 	transition: 0.5s;
 	&--add {
+		background-position: -10px -135px;
+		width: 13px;
+		height: 13px;
+		position: relative;
+    top: -1px;
+	}
+	&--add-active {
 		background-position: -10px 0;
 		width: 13px;
 		height: 13px;
@@ -11,6 +18,11 @@
 	}
 	&--history {
 		background-position: -11px -120px;
+		width: 12px;
+		height: 12px;
+	}
+	&--history-active {
+		background-position: -11px -153px;
 		width: 12px;
 		height: 12px;
 	}

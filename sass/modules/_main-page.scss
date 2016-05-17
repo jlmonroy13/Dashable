@@ -6,7 +6,7 @@
     text-align: right;
     font-size: 7.857rem;
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: 700;
     margin: 0;
     position: relative;
     right: 55.5vw;
@@ -27,9 +27,9 @@
     margin: 0;
     line-height: 0.8;
     &--small-size {
-      font-size: 3.571rem;
+      font-size: 3.857rem;
       @media(max-width: 520px) {
-        font-size: 2.428rem;
+        font-size: 2.8571rem;
       } 
     }
     &--blue {
@@ -37,6 +37,8 @@
     }
   }
   &__author {
+    position: relative;
+    z-index: 3;
     font-size: 1rem;
     color: $gray-dark;
     font-style: italic;

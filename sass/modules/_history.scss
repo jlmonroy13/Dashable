@@ -1,14 +1,19 @@
 .history {
-  height: 527.91px;
+  height: 373px;
   position: relative;
   background: $brand-info;
-  border-radius: 5px;
+  border-radius: 4px;
   z-index: 2;
   overflow: auto;
   &__items {
-  	padding: 10px 10% 15px;
+  	padding: 10px 8% 15px;
+    background-color: #fff;
+    transition: 0.7s;
   	&:hover {
   		background-color: rgba($gray-light, 0.2);
+      .history__buttons {
+        opacity: 1;
+      }
   	}
   }
   &__date {
@@ -17,6 +22,7 @@
   	font-weight: 300;
   	position: relative;
   	left: -10px;
+    margin-bottom: 5px;;
   }
   &__hours {
   	display: inline-block;
@@ -44,16 +50,41 @@
   	text-transform: capitalize;
   }
   &__buttons {
+    opacity: 0;
   	text-decoration: none;
   	color: $brand-primary;
   	font-size: 0.857rem;
   	margin-right: 5px;
+    transition: 0.5s;
   	&--line {
   		&:after {
   			content:"";
-		    border-left: 2px solid $brand-primary;
+		    border-left: 1px solid $brand-primary;
 		    margin-left: 10px;
   		}
   	}
   }
+  @media(min-width: 401px){
+    height: 527.91px;
+  }
+  &::-webkit-scrollbar {
+    width: 7px; 
+    background-color: transparent; 
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $hover-list; 
+    border-radius: 10px;
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
