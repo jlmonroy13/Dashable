@@ -34,10 +34,11 @@ module.exports = function(grunt) {
       dist: {
         src: [
           'bower_components/jquery/dist/jquery.js',
+          'bower_components/selectize/dist/js/standalone/selectize.min.js',
+          'javascripts/owl.carousel.min.js',
           'bower_components/angular/angular.js',
           'bower_components/angular-route/angular-route.js',
-          'javascripts/owl.carousel.min.js',
-          'javascripts/selectize.js'
+          'bower_components/angular-selectize2/dist/angular-selectize.js'
         ], 
         dest: 'application/assets/javascripts/vendor/bundle.js'
       },
@@ -63,6 +64,7 @@ module.exports = function(grunt) {
         files: {
             'application/assets/javascripts/application.min.js': [
             'javascripts/application.js',
+            'javascripts/directives/owl_carousel.directive.js',
             'javascripts/routes.js'
           ]
         }

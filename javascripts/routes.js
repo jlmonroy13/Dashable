@@ -16,4 +16,4 @@ angular
         templateUrl: '/assets/templates/pages/home/index.html'
       })
       .otherwise( { redirectTo: '/home'});
-  }  
+  }   
