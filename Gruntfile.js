@@ -38,7 +38,8 @@ module.exports = function(grunt) {
           'javascripts/owl.carousel.min.js',
           'bower_components/angular/angular.js',
           'bower_components/angular-route/angular-route.js',
-          'bower_components/angular-selectize2/dist/angular-selectize.js'
+          'bower_components/angular-selectize2/dist/angular-selectize.js',
+          'bower_components/satellizer/satellizer.min.js'
         ], 
         dest: 'application/assets/javascripts/vendor/bundle.js'
       },
@@ -55,7 +56,7 @@ module.exports = function(grunt) {
         options: {
           watchTask: true,
           server: './application',
-          port: 8080
+          port: 3000
         }
       }
     },
@@ -65,6 +66,7 @@ module.exports = function(grunt) {
             'application/assets/javascripts/application.min.js': [
             'javascripts/application.js',
             'javascripts/directives/owl_carousel.directive.js',
+            'javascripts/controllers/login.controller.js',
             'javascripts/routes.js'
           ]
         }

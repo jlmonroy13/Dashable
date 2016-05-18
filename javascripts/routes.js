@@ -12,8 +12,8 @@ angular
       .when('/history', {
         templateUrl: '/assets/templates/pages/history/index.html'
       })
-      .when('/home', {
+      .when('/', {
         templateUrl: '/assets/templates/pages/home/index.html'
       })
-      .otherwise( { redirectTo: '/home'});
+      .otherwise( { redirectTo: '/'});
   }   
