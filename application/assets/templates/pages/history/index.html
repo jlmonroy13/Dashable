@@ -106,3 +106,14 @@
 
 
 <img src="assets/images/koombea-logo.svg" alt="Koombea Logo" class="logo" />
+<script>
+  $(function() {
+    var $mobileMenu   =   $('.button-menu-mobile-js'),
+        $nav          =   $('.navbar-js');
+
+    // Mobile Menu
+    $mobileMenu.click(function() {
+      $nav.toggleClass('navbar__mobile');
+    }); 
+  });
+</script>

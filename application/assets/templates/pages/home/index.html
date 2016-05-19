@@ -1,4 +1,4 @@
-<div class="quote" ng-controller="LoginCtrl as login">
+<div class="quote" ng-controller="mainController as login">
   <h1 class="quote__title">
     <p class="quote__text quote__text--small-size">lost</p>
     <p class="quote__text">time</p>
@@ -9,7 +9,7 @@
   </h1>
   <span class="line-home line-home--top"></span>
   <div class="google-signin">
-    <div class="g-signin2" ng-click="login.authenticate('google')"></div>
+    <div class="g-signin2" ng-click="login.login()"></div>
     <p class="google-signin__aux-text">Want to Check-in?</p>
     <div class="google-signin__text">
       <span class="google-signin__text">Sign in with your </span>

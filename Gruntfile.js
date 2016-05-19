@@ -6,7 +6,7 @@ module.exports = function(grunt) {
         tasks: ['sass', 'autoprefixer']
       },
       uglify: {
-        files: ['javascripts/*.js'],
+        files: ['javascripts/**/*.js'],
         tasks: ['uglify']
       }
     },
@@ -39,7 +39,7 @@ module.exports = function(grunt) {
           'bower_components/angular/angular.js',
           'bower_components/angular-route/angular-route.js',
           'bower_components/angular-selectize2/dist/angular-selectize.js',
-          'bower_components/satellizer/satellizer.min.js'
+          'node_modules/angular-google-gapi/dist/angular-google-gapi.min.js'
         ], 
         dest: 'application/assets/javascripts/vendor/bundle.js'
       },
@@ -72,10 +72,11 @@ module.exports = function(grunt) {
         files: {
             'application/assets/javascripts/application.min.js': [
             'javascripts/application.js',
+            'javascripts/module/module.js',
+            'javascripts/config/routes.js',
+            'javascripts/config/config.js',
             'javascripts/directives/owl_carousel.directive.js',
-            'javascripts/config.js',
-            'javascripts/controllers/login.controller.js',
-            'javascripts/routes.js'
+            'javascripts/controllers/login.controller.js'
           ]
         }
       }

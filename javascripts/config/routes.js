@@ -1,3 +1,4 @@
+(function() {
 angular
   .module('CheckIn')
   .config(router);
@@ -17,3 +18,4 @@ angular
       })
       .otherwise( { redirectTo: '/'});
   }   
+})();
