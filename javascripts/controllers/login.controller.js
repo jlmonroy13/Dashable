@@ -7,9 +7,14 @@
       $auth.authenticate(provider)
       .then(function(response) {
         console.log(response);
+        $.post( "http://localhost:3001/users/auth/google_oauth2/callback", 
+          { code: response.code })
+          .done(function( data ) {
+            alert( "Data Loaded: " + data );
+          });
       })
       .catch(function(response) {
-        // Something went wrong.
+        // Something went wrong. 
       });
     }
     

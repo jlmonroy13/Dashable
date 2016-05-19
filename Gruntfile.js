@@ -55,7 +55,14 @@ module.exports = function(grunt) {
         },
         options: {
           watchTask: true,
-          server: './application',
+          server: {
+              baseDir: './application',
+              middleware: function (req, res, next) {
+                console.log('-----')
+                res.setHeader('Access-Control-Allow-Origin', '*');
+                next();
+              }
+          },
           port: 3000
         }
       }
@@ -66,6 +73,7 @@ module.exports = function(grunt) {
             'application/assets/javascripts/application.min.js': [
             'javascripts/application.js',
             'javascripts/directives/owl_carousel.directive.js',
+            'javascripts/config.js',
             'javascripts/controllers/login.controller.js',
             'javascripts/routes.js'
           ]
