@@ -75,6 +75,8 @@ module.exports = function(grunt) {
             'javascripts/module/module.js',
             'javascripts/config/routes.js',
             'javascripts/config/config.js',
+            'javascripts/services/authentication.factory.js',
+            'javascripts/services/checkin.factory.js',
             'javascripts/directives/owl_carousel.directive.js',
             'javascripts/controllers/login.controller.js'
           ]
