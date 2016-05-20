@@ -12,10 +12,5 @@
       GApi.load('oauth2', 'v2');
       GAuth.setClient(CLIENT);
       GAuth.setScope("https://www.googleapis.com/auth/userinfo.email"); 
-      
-      $('.js-select').selectize({
-        sortField: 'text'
-      });
-
     }
 })();

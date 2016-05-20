@@ -1,7 +1,9 @@
 (function () {  
   angular
     .module("CheckIn")
-    .directive('wrapOwlcarousel', function() {
+    .directive('wrapOwlcarousel', wrapOwlcarousel);
+
+    function wrapOwlcarousel() {
       return {
         restrict: 'E',
         link: function(scope, element, attrs) {
@@ -15,5 +17,5 @@
           $(element).owlCarousel(options);
         }
       }
-    });
+    }
 })();    

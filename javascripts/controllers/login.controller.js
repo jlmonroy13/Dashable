@@ -19,9 +19,24 @@
                 $.post( "http://localhost:3002/users/auth/google_oauth2/callback", 
                 { access_token: token.access_token })
                 .done(function( data ) {
-                  console.log(data);
+                  console.log( data.response.jwt ); 
                   if( data !== '') { 
+                    var jwt = "bearer "+data.response.jwt;
                     window.location.replace('/#/checkin');
+                    var settings = {
+                      "async": true,
+                      "crossDomain": true,
+                      "url": "http://localhost:3002/api/1/projects",
+                      "method": "GET",
+                      "headers": {
+                        "content-type": "application/json",
+                        "authorization": jwt
+                      }
+                    };
+
+                    $.ajax(settings).done(function (response) {
+                      console.log(response);
+                    });
                   }
                   
                 });

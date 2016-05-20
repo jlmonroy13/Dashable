@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Selvio/Starter-Project#readme",
   "dependencies": {
+    "angular-google-gapi": "^1.0.0",
     "grunt": "^0.4.5"
   },
   "devDependencies": {
