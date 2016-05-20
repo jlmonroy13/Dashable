@@ -22,6 +22,8 @@
             <option value="convergely">Convergely</option>
           </select>
           <label class="input__label" for="project">project</label>
+          <label ng-repeat="data in login.prueba">{{data.title}}</p>
+          <label ng-repeat="data in login.projects">{{data.title}}</p>
         </div>
         <div class="input__group input__group--large effect-select-js">
           <select class="js-select" placeholder="">
