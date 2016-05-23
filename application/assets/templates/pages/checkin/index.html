@@ -15,14 +15,10 @@
       <div class="form-padding">
         <div class="input__group effect-select-js">
           <!-- <selectize placeholder='Pick some things...' options='myOptions' config="{maxItems: 1}" ng-model="myModel2" ng-disabled='disable' required='true'></selectize> -->
-          <select class="js-select"><!-- class="js-select" -->
+          <select ng-click="projectsCtrl.getProjects()"><!-- class="js-select" -->
             <option class="empty-option-js" value=""></option>
-            <option value="saasler">Saasler</option>
-            <option value="dashable">Dashable</option>
-            <option value="convergely">Convergely</option>
-            <option ng-repeat="project in login.prueba" value="{{project.title}}">{{project.title}}</option>
+            <option ng-repeat="project in projectsCtrl.projects" value="{{project.title}}">{{project.title}}</option>
           </select>
-          <p ng-repeat="project in login.projects" value="{{project.title}}">{{project.title}}</p>
           <label class="input__label" for="project">project</label>
         </div>
         <div class="input__group input__group--large effect-select-js">

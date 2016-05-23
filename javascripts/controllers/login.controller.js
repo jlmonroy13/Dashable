@@ -1,34 +1,29 @@
 (function() {
   angular
     .module('CheckIn')
-    .controller('mainController', mainController);
-    mainController.$inject = ['$window', 'authenticationFactory', 'checkinFactory'];
-    function mainController($window, authenticationFactory, checkinFactory) {
-      var vm  = this,
-          jwt;
+    .controller('loginController', loginController);
+    loginController.$inject = ['$window', 'authenticationFactory', 'checkinFactory', '$location'];
+    function loginController($window, authenticationFactory, checkinFactory, $location) {
+      var vm  = this;
 
       vm.login = login; 
       vm.prueba = [{title: "hola"}, {title: "chao"}];
 
       function login() {
-        authenticationFactory.login()
-          .then(bindJWT);
-      } 
-      function bindJWT(data) {
-        $window.location.href = '/#/checkin';
-        jwt = data.response.jwt;
-        // console.log(jwt);
-        getProjects();
-      }
-      function getProjects() {
-        checkinFactory.getUserProjects(jwt)
-          .then(bindProjects);
-      }
-      function bindProjects(data) {
-        vm.projects = data.response;
-        console.log(vm.projects);
+        authenticationFactory.login().then(function() {
+          $location.path('/checkin');
+        });
         
-      }
+        // getProjects();
+      } 
+      // function getProjects() {
+      //   checkinFactory.getUserProjects()//jwt
+      //     .then(bindProjects);
+      // }
+      // function bindProjects(data) {
+      //   vm.projects = data.response;
+      //   console.log(vm.projects);
+      // }
     }
 })(); 
 

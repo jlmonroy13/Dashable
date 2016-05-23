@@ -9,15 +9,15 @@ angular
     $routeProvider
       .when('/checkin', {
         templateUrl: '/assets/templates/pages/checkin/index.html',
-        controller: 'mainController',
-        controllerAs: 'login'
+        controller: 'getProjectsController',
+        controllerAs: 'projectsCtrl'
       })
       .when('/history', {
         templateUrl: '/assets/templates/pages/history/index.html'
       })
       .when('/', {
         templateUrl: '/assets/templates/pages/home/index.html',
-        controller: 'mainController',
+        controller: 'loginController',
         controllerAs: 'login'
       })
       .otherwise( { redirectTo: '/'});

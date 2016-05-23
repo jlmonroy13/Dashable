@@ -4,11 +4,11 @@
     .module('CheckIn')
     .factory('authenticationFactory', authenticationFactory);
 
-    authenticationFactory.$inject = ['$http','GAuth', 'GData', '$rootScope'];
+    authenticationFactory.$inject = ['$http','GAuth', 'GData', '$rootScope', 'localStorageService'];
 
-    function authenticationFactory($http, GAuth, GData, $rootScope) {
+    function authenticationFactory($http, GAuth, GData, $rootScope, localStorageService) {
       var factory = {
-            login: login,
+            login: login, 
             request: function($config) {
                       if( $rootScope.user.loginticket )
                       {
@@ -33,10 +33,14 @@
           // console.log(token);
           return $http.post("http://localhost:3002/users/auth/google_oauth2/callback?access_token="+token.access_token)
           .then(function(response) {
+            console.log(response.data.response.jwt);
+            setLocalStorage('jwt', response.data.response.jwt)
             return response.data;
-            console.log(response.data);
           });
         }
-      }    
+      } 
+      function setLocalStorage(key, val) {
+        return localStorageService.set(key, val);
+      }   
     }
 })();

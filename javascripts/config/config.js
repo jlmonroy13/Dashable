@@ -1,9 +1,9 @@
 (function () {
   angular
     .module('CheckIn')
-    .run(config);
-    config.$inject = ['$location', 'GAuth', 'GApi', 'GData', '$rootScope', '$httpProvider']; 
-    function config($location, GAuth, GApi, GData, $rootScope, $httpProvider) {
+    .run(run);
+    run.$inject = ['$location', 'GAuth', 'GApi', 'GData', '$rootScope']; 
+    function run($location, GAuth, GApi, GData, $rootScope) {
       // console.log($location);
       $rootScope.gdata = GData;
 
@@ -12,6 +12,17 @@
       GApi.load('oauth2', 'v2');
       GAuth.setClient(CLIENT);
       GAuth.setScope("https://www.googleapis.com/auth/userinfo.email"); 
-      $httpProvider.interceptors.push('authenticationFactory');  
+    }
+
+  angular
+    .module('CheckIn')
+    .config(config);
+    config.$inject = ['localStorageServiceProvider', '$httpProvider']; 
+    function config(localStorageServiceProvider, $httpProvider) {
+      localStorageServiceProvider
+        .setPrefix('CheckIn')
+        .setNotify(true, true);
+
+      $httpProvider.interceptors.push('httpInterceptorFactory');  
     }
 })();

@@ -1,5 +1,5 @@
 /*!
- * jQuery JavaScript Library v2.2.3
+ * jQuery JavaScript Library v2.2.4
  * http://jquery.com/
  *
  * Includes Sizzle.js
@@ -9,7 +9,7 @@
  * Released under the MIT license
  * http://jquery.org/license
  *
- * Date: 2016-04-05T19:26Z
+ * Date: 2016-05-20T17:23Z
  */
 
 (function( global, factory ) {
@@ -65,7 +65,7 @@ var support = {};
 
 
 var
-	version = "2.2.3",
+	version = "2.2.4",
 
 	// Define a local copy of jQuery
 	jQuery = function( selector, context ) {
@@ -5006,13 +5006,14 @@ jQuery.Event.prototype = {
 	isDefaultPrevented: returnFalse,
 	isPropagationStopped: returnFalse,
 	isImmediatePropagationStopped: returnFalse,
+	isSimulated: false,
 
 	preventDefault: function() {
 		var e = this.originalEvent;
 
 		this.isDefaultPrevented = returnTrue;
 
-		if ( e ) {
+		if ( e && !this.isSimulated ) {
 			e.preventDefault();
 		}
 	},
@@ -5021,7 +5022,7 @@ jQuery.Event.prototype = {
 
 		this.isPropagationStopped = returnTrue;
 
-		if ( e ) {
+		if ( e && !this.isSimulated ) {
 			e.stopPropagation();
 		}
 	},
@@ -5030,7 +5031,7 @@ jQuery.Event.prototype = {
 
 		this.isImmediatePropagationStopped = returnTrue;
 
-		if ( e ) {
+		if ( e && !this.isSimulated ) {
 			e.stopImmediatePropagation();
 		}
 
@@ -5960,19 +5961,6 @@ function getWidthOrHeight( elem, name, extra ) {
 		val = name === "width" ? elem.offsetWidth : elem.offsetHeight,
 		styles = getStyles( elem ),
 		isBorderBox = jQuery.css( elem, "boxSizing", false, styles ) === "border-box";
-
-	// Support: IE11 only
-	// In IE 11 fullscreen elements inside of an iframe have
-	// 100x too small dimensions (gh-1764).
-	if ( document.msFullscreenElement && window.top !== window ) {
-
-		// Support: IE11 only
-		// Running getBoundingClientRect on a disconnected node
-		// in IE throws an error.
-		if ( elem.getClientRects().length ) {
-			val = Math.round( elem.getBoundingClientRect()[ name ] * 100 );
-		}
-	}
 
 	// Some non-html elements return undefined for offsetWidth, so check for null/undefined
 	// svg - https://bugzilla.mozilla.org/show_bug.cgi?id=649285
@@ -7864,6 +7852,7 @@ jQuery.extend( jQuery.event, {
 	},
 
 	// Piggyback on a donor event to simulate a different one
+	// Used only for `focus(in | out)` events
 	simulate: function( type, elem, event ) {
 		var e = jQuery.extend(
 			new jQuery.Event(),
@@ -7871,27 +7860,10 @@ jQuery.extend( jQuery.event, {
 			{
 				type: type,
 				isSimulated: true
-
-				// Previously, `originalEvent: {}` was set here, so stopPropagation call
-				// would not be triggered on donor event, since in our own
-				// jQuery.event.stopPropagation function we had a check for existence of
-				// originalEvent.stopPropagation method, so, consequently it would be a noop.
-				//
-				// But now, this "simulate" function is used only for events
-				// for which stopPropagation() is noop, so there is no need for that anymore.
-				//
-				// For the 1.x branch though, guard for "click" and "submit"
-				// events is still used, but was moved to jQuery.event.stopPropagation function
-				// because `originalEvent` should point to the original event for the constancy
-				// with other events and for more focused logic
 			}
 		);
 
 		jQuery.event.trigger( e, null, elem );
-
-		if ( e.isDefaultPrevented() ) {
-			event.preventDefault();
-		}
 	}
 
 } );
@@ -41846,4 +41818,449 @@ angular.module('selectize', []).value('selectizeConfig', {}).directive("selectiz
  * @version 1.0.0-beta.2
  * @link https://github.com/maximepvrt/angular-google-gapi
  */
-!function(){"use strict";angular.module("angular-google-gapi",[])}(),function(){"use strict";angular.module("angular-google-gapi").factory("GApi",["$q","GClient","GData","$window",function(e,n,t,o){function r(e,n,t,o,r){var i={};i.api=e,i.apiLoad=!1,i.method=n,i.params=t,i.auth=o,i.deferred=r,p.push(i)}function i(t,r,i){var a=e.defer();return n.get().then(function(){o.gapi.client.load(t,r,void 0,i).then(function(e){var n={api:t,version:r,url:i};e&&e.hasOwnProperty("error")?(console.log(r),a.reject(n)):(a.resolve(n),f.push(t),u(t))})}),a.promise}function u(e){for(var n=e,o=0;o<p.length;o++){var r=p[o];r.api!=n&&!r.apiLoad||0!=r.auth&&1!=t.isLogin()?r.api==n&&(p[o].apiLoad=!0):(c(r.api,r.method,r.params,r.deferred),o>-1&&p.splice(o--,1))}}function a(e,n,t){for(var r=n.split("."),e=o.gapi.client[e],i=0;i<r.length;i++)e=e[r[i]];return e(t)}function c(e,n,t,o){a(e,n,t).execute(function(e){e.error?o.reject(e):o.resolve(e)})}function l(n,t,o,i){var u=e.defer();return f.indexOf(n)>-1?c(n,t,o,u):r(n,t,o,i,u),u.promise}function s(n,t){function o(e,n){e.apply(this,t).then(function(e){r.resolve(e)})["catch"](function(t){if(403==t.code&&t.message.toLowerCase().indexOf("limit exceeded")>-1||503==t.code){var i=2,u=1e3,a=Math.floor(1e3*Math.random()+1);5>n?setTimeout(function(){o(e,++n)},u*Math.pow(i,n)+a):r.reject(t)}else r.reject(t)})}var r=e.defer(),i=0;return o(n,i),r.promise}var f=[],p=[];return{executeCallbacks:function(){u()},load:i,createRequest:a,execute:function(e,n,t){return 3==arguments.length?l(e,n,t,!1):2==arguments.length?l(e,n,null,!1):void 0},executeAuth:function(e,n,t){return 3==arguments.length?s(l,arguments):2==arguments.length?s(l,arguments):void 0}}}])}(),function(){"use strict";angular.module("angular-google-gapi").factory("GAuth",["$rootScope","$q","GClient","GApi","GData","$interval","$window","$location",function(e,n,t,o,r,i,u,a){function c(){var e=n.defer();return 0==g?t.get().then(function(){u.gapi.client.load("oauth2","v2",function(){g=!0,e.resolve()})}):e.resolve(),e.promise}function l(e,n){function t(e,n){var t={client_id:p,scope:h,immediate:!1,authuser:-1,response_type:v};e&&(t.user_id=r.getUserId(),t.immediate=!0),void 0!=d&&(t.hd=d),u.gapi.auth.authorize(t,n)}e||g!==!0?c().then(function(){t(e,n)}):t(e,n)}function s(){function e(n){if("https://accounts.google.com"===n.origin){var r=JSON.parse(n.data);u.removeEventListener("message",e),r=t(r.a[0],"code"),void 0==r?o.reject():o.resolve(r)}}function t(e,n){n=n.replace(/[[]/,"[").replace(/[]]/,"]");var t=n+"=([^&#]*)",o=new RegExp(t),r=o.exec(e);return null==r?void 0:r[1]}var o=n.defer(),r=a.protocol()+"//"+a.hostname();(""!=a.port()||443!=a.port()&&"https"==a.protocol())&&(r=r+":"+a.port());u.open("https://accounts.google.com/o/oauth2/auth?scope="+encodeURI(h)+"&redirect_uri=postmessage&response_type=code&client_id="+p+"&access_type=offline&approval_prompt=force&origin="+r,null,"width=800, height=600");return u.addEventListener("message",e),o.promise}function f(){var e=n.defer();return u.gapi.client.oauth2.userinfo.get().execute(function(n){n.code?e.reject():(r.isLogin(!0),o.executeCallbacks(),n.name&&0!==n.name.length||(n.name=n.email),r.getUser(n),e.resolve(n))}),e.promise}var p,g=!1,d=void 0,h="https://www.googleapis.com/auth/userinfo.email",v="token id_token";return{setClient:function(e){p=e},setDomain:function(e){d=e},setScope:function(e){h=e},load:c,checkAuth:function(){var e=n.defer();return l(!0,function(){f().then(function(n){e.resolve(n)},function(){e.reject()})}),e.promise},login:function(){var e=n.defer();return l(!1,function(){f().then(function(n){e.resolve(n)},function(){e.reject()})}),e.promise},setToken:function(e){var t=n.defer();return c().then(function(){u.gapi.auth.setToken(e),f().then(function(){t.resolve()},function(){t.reject()})}),t.promise},getToken:function(){var e=n.defer();return c().then(function(){e.resolve(u.gapi.auth.getToken())}),e.promise},logout:function(){var e=n.defer();return c().then(function(){u.gapi.auth.setToken(null),r.isLogin(!1),r.getUser(null),e.resolve()}),e.promise},offline:function(){var e=n.defer();return s().then(function(n){e.resolve(n)},function(){e.reject()}),e.promise}}}])}(),function(){"use strict";angular.module("angular-google-gapi").factory("GClient",["$document","$q","$window",function(e,n,t){function o(o){var r=n.defer();t._gapiOnLoad=function(){r.resolve()};var i=e[0].createElement("script");return i.onerror=function(e){$timeout(function(){r.reject(e)})},i.src=o,e[0].body.appendChild(i),r.promise}var r=!1,i=!1,u="https://apis.google.com/js/client.js?onload=_gapiOnLoad",a=null,c=[];return{get:function(){var e=n.defer();return r?e.resolve():i?c.push(e):(i=!0,o(u).then(function(){t.gapi.client.setApiKey(a),r=!0,i=!1,e.resolve();for(var n=0;n<c.length;n++)c[n].resolve()})),e.promise},setApiKey:function(e){a=e,r&&t.gapi.client.setApiKey(a)},getApiKey:function(){return a}}}])}(),function(){"use strict";angular.module("angular-google-gapi").factory("GData",["$rootScope",function(e){e.gapi={};var n=!1,t=null,o=null;return{getUserId:function(){return o},setUserId:function(e){o=e},isLogin:function(t){return 0==arguments.length?n:(n=t,void(e.gapi.login=t))},getUser:function(e){return 0==arguments.length?t:(t=e,void(null!==e&&(o=e.id)))}}}])}();
+!function(){"use strict";angular.module("angular-google-gapi",[])}(),function(){"use strict";angular.module("angular-google-gapi").factory("GApi",["$q","GClient","GData","$window",function(e,n,t,o){function r(e,n,t,o,r){var i={};i.api=e,i.apiLoad=!1,i.method=n,i.params=t,i.auth=o,i.deferred=r,p.push(i)}function i(t,r,i){var a=e.defer();return n.get().then(function(){o.gapi.client.load(t,r,void 0,i).then(function(e){var n={api:t,version:r,url:i};e&&e.hasOwnProperty("error")?(console.log(r),a.reject(n)):(a.resolve(n),f.push(t),u(t))})}),a.promise}function u(e){for(var n=e,o=0;o<p.length;o++){var r=p[o];r.api!=n&&!r.apiLoad||0!=r.auth&&1!=t.isLogin()?r.api==n&&(p[o].apiLoad=!0):(c(r.api,r.method,r.params,r.deferred),o>-1&&p.splice(o--,1))}}function a(e,n,t){for(var r=n.split("."),e=o.gapi.client[e],i=0;i<r.length;i++)e=e[r[i]];return e(t)}function c(e,n,t,o){a(e,n,t).execute(function(e){e.error?o.reject(e):o.resolve(e)})}function l(n,t,o,i){var u=e.defer();return f.indexOf(n)>-1?c(n,t,o,u):r(n,t,o,i,u),u.promise}function s(n,t){function o(e,n){e.apply(this,t).then(function(e){r.resolve(e)})["catch"](function(t){if(403==t.code&&t.message.toLowerCase().indexOf("limit exceeded")>-1||503==t.code){var i=2,u=1e3,a=Math.floor(1e3*Math.random()+1);5>n?setTimeout(function(){o(e,++n)},u*Math.pow(i,n)+a):r.reject(t)}else r.reject(t)})}var r=e.defer(),i=0;return o(n,i),r.promise}var f=[],p=[];return{executeCallbacks:function(){u()},load:i,createRequest:a,execute:function(e,n,t){return 3==arguments.length?l(e,n,t,!1):2==arguments.length?l(e,n,null,!1):void 0},executeAuth:function(e,n,t){return 3==arguments.length?s(l,arguments):2==arguments.length?s(l,arguments):void 0}}}])}(),function(){"use strict";angular.module("angular-google-gapi").factory("GAuth",["$rootScope","$q","GClient","GApi","GData","$interval","$window","$location",function(e,n,t,o,r,i,u,a){function c(){var e=n.defer();return 0==g?t.get().then(function(){u.gapi.client.load("oauth2","v2",function(){g=!0,e.resolve()})}):e.resolve(),e.promise}function l(e,n){function t(e,n){var t={client_id:p,scope:h,immediate:!1,authuser:-1,response_type:v};e&&(t.user_id=r.getUserId(),t.immediate=!0),void 0!=d&&(t.hd=d),u.gapi.auth.authorize(t,n)}e||g!==!0?c().then(function(){t(e,n)}):t(e,n)}function s(){function e(n){if("https://accounts.google.com"===n.origin){var r=JSON.parse(n.data);u.removeEventListener("message",e),r=t(r.a[0],"code"),void 0==r?o.reject():o.resolve(r)}}function t(e,n){n=n.replace(/[[]/,"[").replace(/[]]/,"]");var t=n+"=([^&#]*)",o=new RegExp(t),r=o.exec(e);return null==r?void 0:r[1]}var o=n.defer(),r=a.protocol()+"//"+a.hostname();(""!=a.port()||443!=a.port()&&"https"==a.protocol())&&(r=r+":"+a.port());u.open("https://accounts.google.com/o/oauth2/auth?scope="+encodeURI(h)+"&redirect_uri=postmessage&response_type=code&client_id="+p+"&access_type=offline&approval_prompt=force&origin="+r,null,"width=800, height=600");return u.addEventListener("message",e),o.promise}function f(){var e=n.defer();return u.gapi.client.oauth2.userinfo.get().execute(function(n){n.code?e.reject():(r.isLogin(!0),o.executeCallbacks(),n.name&&0!==n.name.length||(n.name=n.email),r.getUser(n),e.resolve(n))}),e.promise}var p,g=!1,d=void 0,h="https://www.googleapis.com/auth/userinfo.email",v="token id_token";return{setClient:function(e){p=e},setDomain:function(e){d=e},setScope:function(e){h=e},load:c,checkAuth:function(){var e=n.defer();return l(!0,function(){f().then(function(n){e.resolve(n)},function(){e.reject()})}),e.promise},login:function(){var e=n.defer();return l(!1,function(){f().then(function(n){e.resolve(n)},function(){e.reject()})}),e.promise},setToken:function(e){var t=n.defer();return c().then(function(){u.gapi.auth.setToken(e),f().then(function(){t.resolve()},function(){t.reject()})}),t.promise},getToken:function(){var e=n.defer();return c().then(function(){e.resolve(u.gapi.auth.getToken())}),e.promise},logout:function(){var e=n.defer();return c().then(function(){u.gapi.auth.setToken(null),r.isLogin(!1),r.getUser(null),e.resolve()}),e.promise},offline:function(){var e=n.defer();return s().then(function(n){e.resolve(n)},function(){e.reject()}),e.promise}}}])}(),function(){"use strict";angular.module("angular-google-gapi").factory("GClient",["$document","$q","$window",function(e,n,t){function o(o){var r=n.defer();t._gapiOnLoad=function(){r.resolve()};var i=e[0].createElement("script");return i.onerror=function(e){$timeout(function(){r.reject(e)})},i.src=o,e[0].body.appendChild(i),r.promise}var r=!1,i=!1,u="https://apis.google.com/js/client.js?onload=_gapiOnLoad",a=null,c=[];return{get:function(){var e=n.defer();return r?e.resolve():i?c.push(e):(i=!0,o(u).then(function(){t.gapi.client.setApiKey(a),r=!0,i=!1,e.resolve();for(var n=0;n<c.length;n++)c[n].resolve()})),e.promise},setApiKey:function(e){a=e,r&&t.gapi.client.setApiKey(a)},getApiKey:function(){return a}}}])}(),function(){"use strict";angular.module("angular-google-gapi").factory("GData",["$rootScope",function(e){e.gapi={};var n=!1,t=null,o=null;return{getUserId:function(){return o},setUserId:function(e){o=e},isLogin:function(t){return 0==arguments.length?n:(n=t,void(e.gapi.login=t))},getUser:function(e){return 0==arguments.length?t:(t=e,void(null!==e&&(o=e.id)))}}}])}();;/**
+ * An Angular module that gives you access to the browsers local storage
+ * @version v0.2.6 - 2016-03-16
+ * @link https://github.com/grevory/angular-local-storage
+ * @author grevory <greg@gregpike.ca>
+ * @license MIT License, http://www.opensource.org/licenses/MIT
+ */
+(function (window, angular) {
+var isDefined = angular.isDefined,
+  isUndefined = angular.isUndefined,
+  isNumber = angular.isNumber,
+  isObject = angular.isObject,
+  isArray = angular.isArray,
+  extend = angular.extend,
+  toJson = angular.toJson;
+
+angular
+  .module('LocalStorageModule', [])
+  .provider('localStorageService', function() {
+    // You should set a prefix to avoid overwriting any local storage variables from the rest of your app
+    // e.g. localStorageServiceProvider.setPrefix('yourAppName');
+    // With provider you can use config as this:
+    // myApp.config(function (localStorageServiceProvider) {
+    //    localStorageServiceProvider.prefix = 'yourAppName';
+    // });
+    this.prefix = 'ls';
+
+    // You could change web storage type localstorage or sessionStorage
+    this.storageType = 'localStorage';
+
+    // Cookie options (usually in case of fallback)
+    // expiry = Number of days before cookies expire // 0 = Does not expire
+    // path = The web path the cookie represents
+    this.cookie = {
+      expiry: 30,
+      path: '/'
+    };
+
+    // Send signals for each of the following actions?
+    this.notify = {
+      setItem: true,
+      removeItem: false
+    };
+
+    // Setter for the prefix
+    this.setPrefix = function(prefix) {
+      this.prefix = prefix;
+      return this;
+    };
+
+    // Setter for the storageType
+    this.setStorageType = function(storageType) {
+      this.storageType = storageType;
+      return this;
+    };
+
+    // Setter for cookie config
+    this.setStorageCookie = function(exp, path) {
+      this.cookie.expiry = exp;
+      this.cookie.path = path;
+      return this;
+    };
+
+    // Setter for cookie domain
+    this.setStorageCookieDomain = function(domain) {
+      this.cookie.domain = domain;
+      return this;
+    };
+
+    // Setter for notification config
+    // itemSet & itemRemove should be booleans
+    this.setNotify = function(itemSet, itemRemove) {
+      this.notify = {
+        setItem: itemSet,
+        removeItem: itemRemove
+      };
+      return this;
+    };
+
+    this.$get = ['$rootScope', '$window', '$document', '$parse', function($rootScope, $window, $document, $parse) {
+      var self = this;
+      var prefix = self.prefix;
+      var cookie = self.cookie;
+      var notify = self.notify;
+      var storageType = self.storageType;
+      var webStorage;
+
+      // When Angular's $document is not available
+      if (!$document) {
+        $document = document;
+      } else if ($document[0]) {
+        $document = $document[0];
+      }
+
+      // If there is a prefix set in the config lets use that with an appended period for readability
+      if (prefix.substr(-1) !== '.') {
+        prefix = !!prefix ? prefix + '.' : '';
+      }
+      var deriveQualifiedKey = function(key) {
+        return prefix + key;
+      };
+      // Checks the browser to see if local storage is supported
+      var browserSupportsLocalStorage = (function () {
+        try {
+          var supported = (storageType in $window && $window[storageType] !== null);
+
+          // When Safari (OS X or iOS) is in private browsing mode, it appears as though localStorage
+          // is available, but trying to call .setItem throws an exception.
+          //
+          // "QUOTA_EXCEEDED_ERR: DOM Exception 22: An attempt was made to add something to storage
+          // that exceeded the quota."
+          var key = deriveQualifiedKey('__' + Math.round(Math.random() * 1e7));
+          if (supported) {
+            webStorage = $window[storageType];
+            webStorage.setItem(key, '');
+            webStorage.removeItem(key);
+          }
+
+          return supported;
+        } catch (e) {
+          storageType = 'cookie';
+          $rootScope.$broadcast('LocalStorageModule.notification.error', e.message);
+          return false;
+        }
+      }());
+
+      // Directly adds a value to local storage
+      // If local storage is not available in the browser use cookies
+      // Example use: localStorageService.add('library','angular');
+      var addToLocalStorage = function (key, value) {
+        // Let's convert undefined values to null to get the value consistent
+        if (isUndefined(value)) {
+          value = null;
+        } else {
+          value = toJson(value);
+        }
+
+        // If this browser does not support local storage use cookies
+        if (!browserSupportsLocalStorage || self.storageType === 'cookie') {
+          if (!browserSupportsLocalStorage) {
+            $rootScope.$broadcast('LocalStorageModule.notification.warning', 'LOCAL_STORAGE_NOT_SUPPORTED');
+          }
+
+          if (notify.setItem) {
+            $rootScope.$broadcast('LocalStorageModule.notification.setitem', {key: key, newvalue: value, storageType: 'cookie'});
+          }
+          return addToCookies(key, value);
+        }
+
+        try {
+          if (webStorage) {
+            webStorage.setItem(deriveQualifiedKey(key), value);
+          }
+          if (notify.setItem) {
+            $rootScope.$broadcast('LocalStorageModule.notification.setitem', {key: key, newvalue: value, storageType: self.storageType});
+          }
+        } catch (e) {
+          $rootScope.$broadcast('LocalStorageModule.notification.error', e.message);
+          return addToCookies(key, value);
+        }
+        return true;
+      };
+
+      // Directly get a value from local storage
+      // Example use: localStorageService.get('library'); // returns 'angular'
+      var getFromLocalStorage = function (key) {
+
+        if (!browserSupportsLocalStorage || self.storageType === 'cookie') {
+          if (!browserSupportsLocalStorage) {
+            $rootScope.$broadcast('LocalStorageModule.notification.warning', 'LOCAL_STORAGE_NOT_SUPPORTED');
+          }
+
+          return getFromCookies(key);
+        }
+
+        var item = webStorage ? webStorage.getItem(deriveQualifiedKey(key)) : null;
+        // angular.toJson will convert null to 'null', so a proper conversion is needed
+        // FIXME not a perfect solution, since a valid 'null' string can't be stored
+        if (!item || item === 'null') {
+          return null;
+        }
+
+        try {
+          return JSON.parse(item);
+        } catch (e) {
+          return item;
+        }
+      };
+
+      // Remove an item from local storage
+      // Example use: localStorageService.remove('library'); // removes the key/value pair of library='angular'
+      var removeFromLocalStorage = function () {
+        var i, key;
+        for (i=0; i<arguments.length; i++) {
+          key = arguments[i];
+          if (!browserSupportsLocalStorage || self.storageType === 'cookie') {
+            if (!browserSupportsLocalStorage) {
+              $rootScope.$broadcast('LocalStorageModule.notification.warning', 'LOCAL_STORAGE_NOT_SUPPORTED');
+            }
+
+            if (notify.removeItem) {
+              $rootScope.$broadcast('LocalStorageModule.notification.removeitem', {key: key, storageType: 'cookie'});
+            }
+            removeFromCookies(key);
+          }
+          else {
+            try {
+              webStorage.removeItem(deriveQualifiedKey(key));
+              if (notify.removeItem) {
+                $rootScope.$broadcast('LocalStorageModule.notification.removeitem', {
+                  key: key,
+                  storageType: self.storageType
+                });
+              }
+            } catch (e) {
+              $rootScope.$broadcast('LocalStorageModule.notification.error', e.message);
+              removeFromCookies(key);
+            }
+          }
+        }
+      };
+
+      // Return array of keys for local storage
+      // Example use: var keys = localStorageService.keys()
+      var getKeysForLocalStorage = function () {
+
+        if (!browserSupportsLocalStorage) {
+          $rootScope.$broadcast('LocalStorageModule.notification.warning', 'LOCAL_STORAGE_NOT_SUPPORTED');
+          return [];
+        }
+
+        var prefixLength = prefix.length;
+        var keys = [];
+        for (var key in webStorage) {
+          // Only return keys that are for this app
+          if (key.substr(0, prefixLength) === prefix) {
+            try {
+              keys.push(key.substr(prefixLength));
+            } catch (e) {
+              $rootScope.$broadcast('LocalStorageModule.notification.error', e.Description);
+              return [];
+            }
+          }
+        }
+        return keys;
+      };
+
+      // Remove all data for this app from local storage
+      // Also optionally takes a regular expression string and removes the matching key-value pairs
+      // Example use: localStorageService.clearAll();
+      // Should be used mostly for development purposes
+      var clearAllFromLocalStorage = function (regularExpression) {
+
+        // Setting both regular expressions independently
+        // Empty strings result in catchall RegExp
+        var prefixRegex = !!prefix ? new RegExp('^' + prefix) : new RegExp();
+        var testRegex = !!regularExpression ? new RegExp(regularExpression) : new RegExp();
+
+        if (!browserSupportsLocalStorage || self.storageType === 'cookie') {
+          if (!browserSupportsLocalStorage) {
+            $rootScope.$broadcast('LocalStorageModule.notification.warning', 'LOCAL_STORAGE_NOT_SUPPORTED');
+          }
+          return clearAllFromCookies();
+        }
+
+        var prefixLength = prefix.length;
+
+        for (var key in webStorage) {
+          // Only remove items that are for this app and match the regular expression
+          if (prefixRegex.test(key) && testRegex.test(key.substr(prefixLength))) {
+            try {
+              removeFromLocalStorage(key.substr(prefixLength));
+            } catch (e) {
+              $rootScope.$broadcast('LocalStorageModule.notification.error', e.message);
+              return clearAllFromCookies();
+            }
+          }
+        }
+        return true;
+      };
+
+      // Checks the browser to see if cookies are supported
+      var browserSupportsCookies = (function() {
+        try {
+          return $window.navigator.cookieEnabled ||
+          ("cookie" in $document && ($document.cookie.length > 0 ||
+            ($document.cookie = "test").indexOf.call($document.cookie, "test") > -1));
+          } catch (e) {
+            $rootScope.$broadcast('LocalStorageModule.notification.error', e.message);
+            return false;
+          }
+        }());
+
+        // Directly adds a value to cookies
+        // Typically used as a fallback is local storage is not available in the browser
+        // Example use: localStorageService.cookie.add('library','angular');
+        var addToCookies = function (key, value, daysToExpiry) {
+
+          if (isUndefined(value)) {
+            return false;
+          } else if(isArray(value) || isObject(value)) {
+            value = toJson(value);
+          }
+
+          if (!browserSupportsCookies) {
+            $rootScope.$broadcast('LocalStorageModule.notification.error', 'COOKIES_NOT_SUPPORTED');
+            return false;
+          }
+
+          try {
+            var expiry = '',
+            expiryDate = new Date(),
+            cookieDomain = '';
+
+            if (value === null) {
+              // Mark that the cookie has expired one day ago
+              expiryDate.setTime(expiryDate.getTime() + (-1 * 24 * 60 * 60 * 1000));
+              expiry = "; expires=" + expiryDate.toGMTString();
+              value = '';
+            } else if (isNumber(daysToExpiry) && daysToExpiry !== 0) {
+              expiryDate.setTime(expiryDate.getTime() + (daysToExpiry * 24 * 60 * 60 * 1000));
+              expiry = "; expires=" + expiryDate.toGMTString();
+            } else if (cookie.expiry !== 0) {
+              expiryDate.setTime(expiryDate.getTime() + (cookie.expiry * 24 * 60 * 60 * 1000));
+              expiry = "; expires=" + expiryDate.toGMTString();
+            }
+            if (!!key) {
+              var cookiePath = "; path=" + cookie.path;
+              if(cookie.domain){
+                cookieDomain = "; domain=" + cookie.domain;
+              }
+              $document.cookie = deriveQualifiedKey(key) + "=" + encodeURIComponent(value) + expiry + cookiePath + cookieDomain;
+            }
+          } catch (e) {
+            $rootScope.$broadcast('LocalStorageModule.notification.error', e.message);
+            return false;
+          }
+          return true;
+        };
+
+        // Directly get a value from a cookie
+        // Example use: localStorageService.cookie.get('library'); // returns 'angular'
+        var getFromCookies = function (key) {
+          if (!browserSupportsCookies) {
+            $rootScope.$broadcast('LocalStorageModule.notification.error', 'COOKIES_NOT_SUPPORTED');
+            return false;
+          }
+
+          var cookies = $document.cookie && $document.cookie.split(';') || [];
+          for(var i=0; i < cookies.length; i++) {
+            var thisCookie = cookies[i];
+            while (thisCookie.charAt(0) === ' ') {
+              thisCookie = thisCookie.substring(1,thisCookie.length);
+            }
+            if (thisCookie.indexOf(deriveQualifiedKey(key) + '=') === 0) {
+              var storedValues = decodeURIComponent(thisCookie.substring(prefix.length + key.length + 1, thisCookie.length));
+              try {
+                return JSON.parse(storedValues);
+              } catch(e) {
+                return storedValues;
+              }
+            }
+          }
+          return null;
+        };
+
+        var removeFromCookies = function (key) {
+          addToCookies(key,null);
+        };
+
+        var clearAllFromCookies = function () {
+          var thisCookie = null, thisKey = null;
+          var prefixLength = prefix.length;
+          var cookies = $document.cookie.split(';');
+          for(var i = 0; i < cookies.length; i++) {
+            thisCookie = cookies[i];
+
+            while (thisCookie.charAt(0) === ' ') {
+              thisCookie = thisCookie.substring(1, thisCookie.length);
+            }
+
+            var key = thisCookie.substring(prefixLength, thisCookie.indexOf('='));
+            removeFromCookies(key);
+          }
+        };
+
+        var getStorageType = function() {
+          return storageType;
+        };
+
+        // Add a listener on scope variable to save its changes to local storage
+        // Return a function which when called cancels binding
+        var bindToScope = function(scope, key, def, lsKey) {
+          lsKey = lsKey || key;
+          var value = getFromLocalStorage(lsKey);
+
+          if (value === null && isDefined(def)) {
+            value = def;
+          } else if (isObject(value) && isObject(def)) {
+            value = extend(value, def);
+          }
+
+          $parse(key).assign(scope, value);
+
+          return scope.$watch(key, function(newVal) {
+            addToLocalStorage(lsKey, newVal);
+          }, isObject(scope[key]));
+        };
+
+        // Return localStorageService.length
+        // ignore keys that not owned
+        var lengthOfLocalStorage = function() {
+          var count = 0;
+          var storage = $window[storageType];
+          for(var i = 0; i < storage.length; i++) {
+            if(storage.key(i).indexOf(prefix) === 0 ) {
+              count++;
+            }
+          }
+          return count;
+        };
+
+        return {
+          isSupported: browserSupportsLocalStorage,
+          getStorageType: getStorageType,
+          set: addToLocalStorage,
+          add: addToLocalStorage, //DEPRECATED
+          get: getFromLocalStorage,
+          keys: getKeysForLocalStorage,
+          remove: removeFromLocalStorage,
+          clearAll: clearAllFromLocalStorage,
+          bind: bindToScope,
+          deriveKey: deriveQualifiedKey,
+          length: lengthOfLocalStorage,
+          cookie: {
+            isSupported: browserSupportsCookies,
+            set: addToCookies,
+            add: addToCookies, //DEPRECATED
+            get: getFromCookies,
+            remove: removeFromCookies,
+            clearAll: clearAllFromCookies
+          }
+        };
+      }];
+  });
+})(window, window.angular);

@@ -39,7 +39,8 @@ module.exports = function(grunt) {
           'bower_components/angular/angular.js',
           'bower_components/angular-route/angular-route.js',
           'bower_components/angular-selectize2/dist/angular-selectize.js',
-          'node_modules/angular-google-gapi/dist/angular-google-gapi.min.js'
+          'node_modules/angular-google-gapi/dist/angular-google-gapi.min.js',
+          'bower_components/angular-local-storage/dist/angular-local-storage.js'
         ], 
         dest: 'application/assets/javascripts/vendor/bundle.js'
       },
@@ -76,9 +77,11 @@ module.exports = function(grunt) {
             'javascripts/config/routes.js',
             'javascripts/config/config.js',
             'javascripts/services/authentication.factory.js',
+            'javascripts/services/httpInterceptor.factory.js',
             'javascripts/services/checkin.factory.js',
             'javascripts/directives/owl_carousel.directive.js',
-            'javascripts/controllers/login.controller.js'
+            'javascripts/controllers/login.controller.js',
+            'javascripts/controllers/getprojects.controller.js'
           ]
         }
       }
