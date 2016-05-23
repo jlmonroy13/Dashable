@@ -3,7 +3,7 @@ angular
   .module('CheckIn')
   .config(router);
 
-  router.$inject = ['$routeProvider'];
+  router.$inject = ['$routeProvider']; 
 
   function router($routeProvider) {
     $routeProvider

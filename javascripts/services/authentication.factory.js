@@ -4,11 +4,18 @@
     .module('CheckIn')
     .factory('authenticationFactory', authenticationFactory);
 
-    authenticationFactory.$inject = ['$http','GAuth', 'GData'];
+    authenticationFactory.$inject = ['$http','GAuth', 'GData', '$rootScope'];
 
-    function authenticationFactory($http, GAuth, GData) {
+    function authenticationFactory($http, GAuth, GData, $rootScope) {
       var factory = {
-            login: login
+            login: login,
+            request: function($config) {
+                      if( $rootScope.user.loginticket )
+                      {
+                       $config.headers['your-auth-ticket'] = $rootScope.user.loginticket;
+                      }
+                      return $config; 
+                    }
           };
       return factory;
       
@@ -27,6 +34,7 @@
           return $http.post("http://localhost:3002/users/auth/google_oauth2/callback?access_token="+token.access_token)
           .then(function(response) {
             return response.data;
+            console.log(response.data);
           });
         }
       }    
