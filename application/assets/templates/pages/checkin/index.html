@@ -14,11 +14,11 @@
     <form class="form" action="">
       <div class="form-padding">
         <div class="input__group effect-select-js">
-          <!-- <selectize placeholder='Pick some things...' options='myOptions' config="{maxItems: 1}" ng-model="myModel2" ng-disabled='disable' required='true'></selectize> -->
-          <select ng-click="projectsCtrl.getProjects()"><!-- class="js-select" -->
+          <selectize placeholder='' options='myOptions' config="{maxItems: 1}" ng-model="myModel2" ng-disabled='disable' required='true'></selectize>
+          <!-- <select>class="js-select"
             <option class="empty-option-js" value=""></option>
             <option ng-repeat="project in projectsCtrl.projects" value="{{project.title}}">{{project.title}}</option>
-          </select>
+          </select> -->
           <label class="input__label" for="project">project</label>
         </div>
         <div class="input__group input__group--large effect-select-js">
@@ -148,13 +148,13 @@
     }); 
     
     //Use selectize plugin only on desktop
-    if (ancho > 400) {
-      $('.js-select').selectize({
-        sortField: 'text'
-      });
-    }else if (ancho <= 400) {
-      $('.empty-option-js').hide();
-    }
+    // if (ancho > 400) {
+    //   $('.js-select').selectize({
+    //     sortField: 'text'
+    //   });
+    // }else if (ancho <= 400) {
+    //   $('.empty-option-js').hide();
+    // }
     // Mobile Menu
     $mobileMenu.click(function() {
       $nav.toggleClass('navbar__mobile');

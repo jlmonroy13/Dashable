@@ -13,7 +13,9 @@ angular
         controllerAs: 'projectsCtrl'
       })
       .when('/history', {
-        templateUrl: '/assets/templates/pages/history/index.html'
+        templateUrl: '/assets/templates/pages/history/index.html',
+        controller: 'getHistoryController',
+        controllerAs: 'historyCtrl'
       })
       .when('/', {
         templateUrl: '/assets/templates/pages/home/index.html',
