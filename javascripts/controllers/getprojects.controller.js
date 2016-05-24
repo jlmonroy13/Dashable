@@ -4,22 +4,39 @@
     .controller('getProjectsController', getProjectsController);
     getProjectsController.$inject = ['checkinFactory', '$scope', '$timeout'];
     function getProjectsController(checkinFactory, $scope, $timeout) {
-      var vm  = this;
-
-      vm.getProjects = getProjects; 
+      var vm          =   this,
+          projectId;
+      vm.getProjects        =   getProjects;
+      vm.getProjectId       =   getProjectId;
+      vm.configProjects     =   {maxItems: 1};
 
       function getProjects() {
-        checkinFactory.getUserProjects()//jwt
-          .then(bindProjects);
+        checkinFactory.getUserProjects()//jwt 
+          .then(displayProjects);
       }
-      function bindProjects(data) {
-        console.log(data);
-        vm.projects = data.response;
-        console.log(data.response);
+
+      function displayProjects(data) {
         $.each(data.response, function(index, value) {
-          $scope.myOptions.push({value: value.id, text: value.title});
+          vm.optionsProjects.push({value: value.id, text: value.title});
         });
       }
-      getProjects();
+      function getProjectId(response) {
+        vm.optionsTask = [];
+        projectId = response;
+        getProjectTask(projectId);
+        checkinFactory.getTimeBills()//get last 15 checkins
+          .then(function(data) {
+            console.log(data);
+          });
+      }
+      function getProjectTask(projectId) {
+        checkinFactory.getProjectTask(projectId).then(displayTask);
+      }
+      function displayTask(data) {
+        $.each(data.response, function(index, value) {
+          vm.optionsTask.push({value: value.id, text: value.title});
+        });
+      }
+      getProjects(); 
     }
 })();  

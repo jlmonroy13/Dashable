@@ -14,7 +14,7 @@
     <form class="form" action="">
       <div class="form-padding">
         <div class="input__group effect-select-js">
-          <selectize placeholder='' options='myOptions' config="{maxItems: 1}" ng-model="myModel2" ng-disabled='disable' required='true'></selectize>
+          <selectize options='projectsCtrl.optionsProjects' config="projectsCtrl.configProjects" ng-model="id"  ng-disabled='disable' required='true' ng-change="projectsCtrl.getProjectId(id)"></selectize>
           <!-- <select>class="js-select"
             <option class="empty-option-js" value=""></option>
             <option ng-repeat="project in projectsCtrl.projects" value="{{project.title}}">{{project.title}}</option>
@@ -22,12 +22,13 @@
           <label class="input__label" for="project">project</label>
         </div>
         <div class="input__group input__group--large effect-select-js">
-          <select class="js-select" placeholder="">
+          <selectize options='projectsCtrl.optionsTask' config="projectsCtrl.configProjects" ng-model="algo" ng-disabled='disable' required='true'></selectize>
+<!--           <select class="js-select" placeholder="">
             <option class="empty-option-js" value=""></option>
             <option value="saasler">Front-end</option>
             <option value="dashable">Design</option>
             <option value="convergely">Back-end</option>
-          </select>
+          </select> -->
           <label class="input__label" for="task">task</label>
           </div><!-- 
         --><div class="input__group input__group--small input__group--vertical">

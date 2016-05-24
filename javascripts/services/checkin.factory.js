@@ -8,46 +8,68 @@
 
     function checkinFactory($http) {
       var factory = {
-            getUserProjects: getUserProjects,
-            getUserHistory: getUserHistory
+            getUserProjects:      getUserProjects,
+            getProjectTask:       getProjectTask,
+            getTimeBills:         getTimeBills,
+            getCheckinsHistory:   getCheckinsHistory
           };
       return factory;
       
       function getUserProjects() {
-        // if( data !== '') { 
-          // var jwt = "bearer " + data;
-          var settings = {
-            "async": true,
-            "crossDomain": true,
-            "url": "http://localhost:3002/api/1/projects",
-            "method": "GET",
-            "headers": {
-              "content-type": "application/json"
-              // "authorization": jwt
-            }
-          };
-          return $http(settings).then(function (data){
-            return data.data;
-          });
-        // }
+        var settings = {
+          "async": true,
+          "crossDomain": true,
+          "url": "http://localhost:3002/api/1/projects",
+          "method": "GET",
+          "headers": {
+            "content-type": "application/json"
+          }
+        };
+        return $http(settings).then(function (data){
+          return data.data;
+        });
       }
-      function getUserHistory() {
-        // if( data !== '') { 
-          // var jwt = "bearer " + data;
-          var settings = { 
-            "async": true,
-            "crossDomain": true,
-            "url": "http://localhost:3002/api/1/projects/5362/tasks",
-            "method": "GET",
-            "headers": {
-              "content-type": "application/json"
-              // "authorization": jwt
-            }
-          };
-          return $http(settings).then(function (data){
-            return data.data;
-          });
-        // }
-      }    
+      function getProjectTask(projectID) {
+        var settings = { 
+          "async": true,
+          "crossDomain": true,
+          "url": "http://localhost:3002/api/1/projects/"+projectID+"/tasks",
+          "method": "GET",
+          "headers": {
+            "content-type": "application/json"
+          }
+        };
+        return $http(settings).then(function (data){
+          return data.data;
+        });
+      }
+      function getTimeBills() {
+        var settings = { 
+          "async": true,
+          "crossDomain": true,
+          "url": "http://localhost:3002/api/1/time_bills/recent",
+          "method": "GET",
+          "headers": {
+            "content-type": "application/json"
+          }
+        };
+        return $http(settings).then(function (data){
+          return data.data;
+        });
+      }
+      function getCheckinsHistory() {
+        var settings = { 
+          "async": true,
+          "crossDomain": true,
+          "url": "http://localhost:3002/api/1/time_bills/history",
+          "method": "GET",
+          "headers": {
+            "content-type": "application/json"
+          }
+        };
+        return $http(settings).then(function (data){
+          return data.data;
+        });
+      }     
     }
 })();

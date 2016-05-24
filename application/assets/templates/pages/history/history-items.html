@@ -1,0 +1,14 @@
+<div class="history__items">
+  <p class="history__date">{{vm.checkins.date |  date:'medium'}}</p>
+  <div class="history__info">
+    <div class="history__hours">
+      <span class="history__hours-data">{{vm.checkins.hours | number:0}}</span>
+    </div><!-- 
+ --><div class="history__description">
+      <p class="history__work-on">{{vm.checkins.memo}}</p>
+      <span class="history__area">{{vm.checkins.project.name}} · </span><span class="history__area margin-right--middle">{{vm.checkins.task.name}} </span>
+      <a href="" class="history__buttons history__buttons--line">Edit</a>
+      <a href="" class="history__buttons">Remove</a>
+    </div>
+  </div>
+</div>
