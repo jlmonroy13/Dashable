@@ -14,21 +14,11 @@
     <form class="form" action="">
       <div class="form-padding">
         <div class="input__group effect-select-js">
-          <selectize options='projectsCtrl.optionsProjects' config="projectsCtrl.configProjects" ng-model="id"  ng-disabled='disable' required='true' ng-change="projectsCtrl.getProjectId(id)"></selectize>
-          <!-- <select>class="js-select"
-            <option class="empty-option-js" value=""></option>
-            <option ng-repeat="project in projectsCtrl.projects" value="{{project.title}}">{{project.title}}</option>
-          </select> -->
+          <selectize options='projectsCtrl.optionsProjects' config="projectsCtrl.configProjectsSelectize" ng-model="id"  ng-disabled='disable' required='true' ng-change="projectsCtrl.getProjectId(id)"></selectize>
           <label class="input__label" for="project">project</label>
         </div>
         <div class="input__group input__group--large effect-select-js">
-          <selectize options='projectsCtrl.optionsTask' config="projectsCtrl.configProjects" ng-model="algo" ng-disabled='disable' required='true'></selectize>
-<!--           <select class="js-select" placeholder="">
-            <option class="empty-option-js" value=""></option>
-            <option value="saasler">Front-end</option>
-            <option value="dashable">Design</option>
-            <option value="convergely">Back-end</option>
-          </select> -->
+          <selectize options='projectsCtrl.optionsTask' config="projectsCtrl.configProjectsSelectize" ng-model="algo" ng-disabled='disable' required='true'></selectize>
           <label class="input__label" for="task">task</label>
           </div><!-- 
         --><div class="input__group input__group--small input__group--vertical">
@@ -42,9 +32,16 @@
         <div class="calendar">
         <h2 class="calendar__title">date</h2>
         <p class="calendar__month">may</p>
-        <wrap-owlcarousel class="owl-carousel">
-          <div class="calendar__item calendar__item--done">
-            <span class="hide--mobile item item--day">monday</span>
+        <data-wrap-owlcarousel class="owl-carousel" data-options="projectsCtrl.optionsCarousel">
+          <div owl-carousel-item="" ng-repeat="item in ::projectsCtrl.dates | limitTo: 12 | reverse" class="item">
+            <div ng-class="{'calendar__item--actual': item.today}" class="calendar__item">
+              <span class="hide--mobile item item--day">{{::item.day}}</span>
+              <span class="hide--desktop item item--day">m</span> 
+              <span class="item item--day-number">{{::item.numberday}}</span>
+            </div>
+          </div>
+<!--           <div class="calendar__item calendar__item--done">
+            <span class="hide--mobile item item--day">{{projectsCtrl.dates.day}}</span>
             <span class="hide--desktop item item--day">m</span> 
             <span class="item item--day-number">25</span>
           </div>
@@ -102,8 +99,8 @@
             <span class="hide--mobile item item--day">saturday</span>
             <span class="hide--desktop item item--day">sa</span>
             <span class="item item--day-number">07</span>
-          </div>
-        </wrap-owlcarousel>
+          </div> -->
+        </data-wrap-owlcarousel>
         </div>
       </div>  
       <button class="button-submit" type="submit">add check-in</button>

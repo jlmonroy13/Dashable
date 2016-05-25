@@ -40,7 +40,10 @@ module.exports = function(grunt) {
           'bower_components/angular-route/angular-route.js',
           'bower_components/angular-selectize2/dist/angular-selectize.js',
           'node_modules/angular-google-gapi/dist/angular-google-gapi.min.js',
-          'bower_components/angular-local-storage/dist/angular-local-storage.js'
+          'bower_components/angular-local-storage/dist/angular-local-storage.js',
+          'bower_components/moment/moment.js',
+          'bower_components/angular-momentjs/angular-momentjs.js'
+
         ], 
         dest: 'application/assets/javascripts/vendor/bundle.js'
       },
@@ -57,14 +60,9 @@ module.exports = function(grunt) {
         options: {
           watchTask: true,
           server: {
-              baseDir: './application',
-              middleware: function (req, res, next) {
-                console.log('-----')
-                res.setHeader('Access-Control-Allow-Origin', '*');
-                next();
-              }
+              baseDir: './application'
           },
-          port: 3000
+          port: 3001
         }
       }
     },
@@ -79,6 +77,7 @@ module.exports = function(grunt) {
             'javascripts/services/authentication.factory.js',
             'javascripts/services/httpInterceptor.factory.js',
             'javascripts/services/checkin.factory.js',
+            'javascripts/services/getweeks.factory.js',
             'javascripts/directives/owl_carousel.directive.js',
             'javascripts/directives/history-items.directive.js',
             'javascripts/controllers/login.controller.js',

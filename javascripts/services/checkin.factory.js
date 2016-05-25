@@ -19,7 +19,7 @@
         var settings = {
           "async": true,
           "crossDomain": true,
-          "url": "http://localhost:3002/api/1/projects",
+          "url": "http://dashable-netsuite-api-st.herokuapp.com/api/1/projects",
           "method": "GET",
           "headers": {
             "content-type": "application/json"
@@ -33,7 +33,7 @@
         var settings = { 
           "async": true,
           "crossDomain": true,
-          "url": "http://localhost:3002/api/1/projects/"+projectID+"/tasks",
+          "url": "http://dashable-netsuite-api-st.herokuapp.com/api/1/projects/"+projectID+"/tasks",
           "method": "GET",
           "headers": {
             "content-type": "application/json"
@@ -47,7 +47,7 @@
         var settings = { 
           "async": true,
           "crossDomain": true,
-          "url": "http://localhost:3002/api/1/time_bills/recent",
+          "url": "http://dashable-netsuite-api-st.herokuapp.com/api/1/time_bills/recent",
           "method": "GET",
           "headers": {
             "content-type": "application/json"
@@ -61,7 +61,7 @@
         var settings = { 
           "async": true,
           "crossDomain": true,
-          "url": "http://localhost:3002/api/1/time_bills/history",
+          "url": "http://dashable-netsuite-api-st.herokuapp.com/api/1/time_bills/history",
           "method": "GET",
           "headers": {
             "content-type": "application/json"
