@@ -1,9 +1,6 @@
 .calendar {
   margin-bottom: 30px;
   min-height: 124px;
-  @media(min-width: 401px){
-    margin-bottom: 50px;
-  }
   &__container {
     position: relative;
     text-align: center;
@@ -46,11 +43,16 @@
         border: 1px solid  transparent !important;
       }
     }
+    &:hover {
+      border: 1px solid $brand-info;
+    }
     @media(min-width: 401px){
       padding: 1.071em 0;
     }
-    &:hover {
-      border: 1px solid $brand-info;
+    @media(max-width: 401px){
+      margin-right: 4px;
+      width: 14%;
+      padding: 0.285em 0; 
     }
   }
   &__month {
@@ -59,6 +61,12 @@
     color: $brand-info;
     margin-left: 5px;
     font-weight: 400;
+  }
+  @media(min-width: 401px){
+    margin-bottom: 50px;
+  }
+  @media(max-width: 401px){
+    margin-bottom: 0;
   }
 }
 .item {
@@ -83,19 +91,21 @@
   }
 }
 
-.owl-prev {
+.prev-week {
   position: absolute;
   top: 15px;
   left: -18px;
+  cursor: pointer;
   @media(min-width: 401px){
     top: 30px;
   }
 }
 
-.owl-next {
+.next-week {
   position: absolute;
   top: 15px;
   right: -18px;
+  cursor: pointer;
   @media(min-width: 401px){
     top: 30px;
   }

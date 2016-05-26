@@ -15,6 +15,12 @@
       };
       return directive;
       function calendarWeekController(){
+        vm = this;
+
+        vm.hola = hola;
+        function hola(data) {
+          console.log(data);
+        }
       }
     }
 })();   

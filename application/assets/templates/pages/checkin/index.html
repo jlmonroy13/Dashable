@@ -32,11 +32,10 @@
         <div class="calendar">
           <h2 class="calendar__title">date</h2>
           <p class="calendar__month">may</p>
-
           <div class="calendar__container">
             <calendar-week week="projectsCtrl.selectWeek"></calendar-week>
-            <i class="owl-prev sprite sprite--nav-prev" ng-click="projectsCtrl.changeWeek(projectsCtrl.lastWeek)"></i> 
-            <i class="owl-next sprite sprite--nav-next" ng-click="projectsCtrl.changeWeek(projectsCtrl.actualWeek)"></i>
+            <span class="prev-week sprite sprite--nav-prev" ng-show="projectsCtrl.statusButton" ng-click="projectsCtrl.changeWeek(projectsCtrl.lastWeek)"></span> 
+            <span class="next-week sprite sprite--nav-next" ng-hide="projectsCtrl.statusButton" ng-click="projectsCtrl.changeWeek(projectsCtrl.actualWeek)"></span>
           </div>
         </div>
       </div>  

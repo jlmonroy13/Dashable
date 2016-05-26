@@ -4,7 +4,7 @@
     .controller('getProjectsController', getProjectsController);
     getProjectsController.$inject = ['checkinFactory', 'getweeksFactory', '$scope', '$timeout', '$moment'];
     function getProjectsController(checkinFactory, getweeksFactory, $scope, $timeout, $moment) {
-      var vm          =   this,
+      var vm                         =   this,
           projectId;
    
       vm.getProjects                 =   getProjects;
@@ -16,6 +16,7 @@
       vm.last12Checkins              =   [];
       vm.selectWeek                  =   [];
       vm.changeWeek                  =   changeWeek;
+      vm.statusButton                =   true;
 
       function get2weeks() {
         vm.dates = getweeksFactory.get2weeks(); //Generate a calendar array of the last two weeks
@@ -72,9 +73,12 @@
       }
       function changeWeek(data) {
         vm.selectWeek = data;
+        changeStatusButton();
       }
-      
+      function changeStatusButton() {
+        vm.statusButton = !vm.statusButton;
+      }
       getLast12Checkins();
       getProjects(); 
     }
-})();  
+})(); 
