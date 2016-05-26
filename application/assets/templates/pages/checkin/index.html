@@ -30,77 +30,14 @@
         <label class="input__label" for="workon">what did you work on?</label>
         </div>
         <div class="calendar">
-        <h2 class="calendar__title">date</h2>
-        <p class="calendar__month">may</p>
+          <h2 class="calendar__title">date</h2>
+          <p class="calendar__month">may</p>
 
-        <div class="calendar__container">
-          <div class="calendar__item" ng-class="{'calendar__item--actual' : item.today}"ng-repeat="item in projectsCtrl.dates | limitTo: 6 | reverse">
-            <span class="hide--mobile item item--day">{{item.day}}</span>
-            <span class="hide--desktop item item--day">m</span> 
-            <span class="item item--day-number">{{item.numberday}}</span>
-          </div><!-- 
-       --> 
-<!--           <div class="calendar__item calendar__item--done">
-            <span class="hide--mobile item item--day">{{projectsCtrl.dates.day}}</span>
-            <span class="hide--desktop item item--day">m</span> 
-            <span class="item item--day-number">25</span>
+          <div class="calendar__container">
+            <calendar-week week="projectsCtrl.selectWeek"></calendar-week>
+            <i class="owl-prev sprite sprite--nav-prev" ng-click="projectsCtrl.changeWeek(projectsCtrl.lastWeek)"></i> 
+            <i class="owl-next sprite sprite--nav-next" ng-click="projectsCtrl.changeWeek(projectsCtrl.actualWeek)"></i>
           </div>
-          <div class="calendar__item calendar__item--done">
-            <span class="hide--mobile item item--day">tuesday</span> 
-            <span class="hide--desktop item item--day">tu</span> 
-            <span class="item item--day-number">26</span>
-          </div>
-          <div class="calendar__item">
-            <span class="hide--mobile item item--day">wednesday</span>
-            <span class="hide--desktop item item--day">w</span>
-            <span class="item item--day-number">27</span>
-          </div>
-          <div class="calendar__item">
-            <span class="hide--mobile item item--day">thursday</span>
-            <span class="hide--desktop item item--day">th</span>
-            <span class="item item--day-number">28</span>
-          </div>
-          <div class="calendar__item">
-            <span class="hide--mobile item item--day">friday</span>
-            <span class="hide--desktop item item--day">f</span>
-            <span class="item item--day-number">29</span>
-          </div>
-          <div class="calendar__item">
-            <span class="hide--mobile item item--day">saturday</span>
-            <span class="hide--desktop item item--day">sa</span>
-            <span class="item item--day-number">30</span>
-          </div>
-          <div class="calendar__item calendar__item--done">
-            <span class="hide--mobile item item--day">monday</span>
-            <span class="hide--desktop item item--day">m</span>
-            <span class="item item--day-number">02</span>
-          </div>
-          <div class="calendar__item calendar__item--done">
-            <span class="hide--mobile item item--day">tuesday</span>
-            <span class="hide--desktop item item--day">tu</span>  
-            <span class="item item--day-number">03</span>
-          </div>
-          <div class="calendar__item calendar__item--actual">
-            <span class="hide--mobile item item--day">wednesday</span>
-            <span class="hide--desktop item item--day">w</span>
-            <span class="item item--day-number">04</span>
-          </div>
-          <div class="calendar__item">
-            <span class="hide--mobile item item--day">thursday</span>
-            <span class="hide--desktop item item--day">th</span>
-            <span class="item item--day-number">05</span>
-          </div>
-          <div class="calendar__item">
-            <span class="hide--mobile item item--day">friday</span>
-            <span class="hide--desktop item item--day">f</span>
-            <span class="item item--day-number">06</span>
-          </div>
-          <div class="calendar__item">
-            <span class="hide--mobile item item--day">saturday</span>
-            <span class="hide--desktop item item--day">sa</span>
-            <span class="item item--day-number">07</span>
-          </div> -->
-        </div>
         </div>
       </div>  
       <button class="button-submit" type="submit">add check-in</button>

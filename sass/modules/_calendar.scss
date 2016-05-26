@@ -1,7 +1,13 @@
 .calendar {
   margin-bottom: 30px;
+  min-height: 124px;
   @media(min-width: 401px){
     margin-bottom: 50px;
+  }
+  &__container {
+    position: relative;
+    text-align: center;
+    padding-left: 7px;
   }
   &__title {
     margin-top: 0;
@@ -23,16 +29,28 @@
     transition: 0.5s; 
     &--actual {
       border: 1px solid $brand-active;
+      &:hover {
+        border: 1px solid  $brand-active !important;
+      }
     }
     &--done {
       border: 1px solid $brand-active;
       background-color: $brand-active;
+      &:hover {
+        border: 1px solid  $brand-active !important;
+      }
+    }
+    &--future {
+      cursor: not-allowed;
+      &:hover {
+        border: 1px solid  transparent !important;
+      }
     }
     @media(min-width: 401px){
       padding: 1.071em 0;
     }
     &:hover {
-      border: 1px solid $brand-active;
+      border: 1px solid $brand-info;
     }
   }
   &__month {

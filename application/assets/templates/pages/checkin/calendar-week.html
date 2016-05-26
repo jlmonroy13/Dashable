@@ -1,0 +1,6 @@
+<div class="calendar__item" ng-class="{'calendar__item--actual' : item.today, 'calendar__item--done' : item.checkin, 'calendar__item--future' : item.future}" ng-repeat="item in vm.week | reverse">
+    <span class="hide--mobile item item--day">{{item.day}}</span>
+    <span class="hide--desktop item item--day">m</span> 
+    <span class="item item--day-number">{{item.numberday}}</span>
+</div><!-- 
+-->

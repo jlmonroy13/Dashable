@@ -80,6 +80,7 @@ module.exports = function(grunt) {
             'javascripts/services/getweeks.factory.js',
             'javascripts/directives/owl_carousel.directive.js',
             'javascripts/directives/history-items.directive.js',
+            'javascripts/directives/calendar-week.directive.js',
             'javascripts/controllers/login.controller.js',
             'javascripts/controllers/getprojects.controller.js',
             'javascripts/controllers/gethistory.controller.js'
