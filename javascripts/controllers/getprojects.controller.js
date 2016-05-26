@@ -19,7 +19,7 @@
                                             navText: ['<i class="sprite sprite--nav-prev"></i>','<i class="sprite sprite--nav-next"></i>'],
                                             items: 6,
                                             dots: false,
-                                            nav: true,
+                                            nav: true
                                           };
 
       function get2weeks() {

@@ -25,8 +25,8 @@
             "content-type": "application/json"
           }
         };
-        return $http(settings).then(function (data){
-          return data.data;
+        return $http(settings).then(function (response){
+          return response.data;
         });
       }
       function getProjectTask(projectID) {
@@ -39,8 +39,8 @@
             "content-type": "application/json"
           }
         };
-        return $http(settings).then(function (data){
-          return data.data;
+        return $http(settings).then(function (response){
+          return response.data;
         });
       }
       function getTimeBills() {
@@ -53,8 +53,8 @@
             "content-type": "application/json"
           }
         };
-        return $http(settings).then(function (data){
-          return data.data;
+        return $http(settings).then(function (response){
+          return response.data;
         });
       }
       function getCheckinsHistory() {
@@ -67,8 +67,8 @@
             "content-type": "application/json"
           }
         };
-        return $http(settings).then(function (data){
-          return data.data;
+        return $http(settings).then(function (response){
+          return response.data;
         });
       }     
     }

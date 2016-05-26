@@ -32,14 +32,14 @@
         <div class="calendar">
         <h2 class="calendar__title">date</h2>
         <p class="calendar__month">may</p>
-        <data-wrap-owlcarousel class="owl-carousel" data-options="projectsCtrl.optionsCarousel">
-          <div owl-carousel-item="" ng-repeat="item in ::projectsCtrl.dates | limitTo: 12 | reverse" class="item">
-            <div ng-class="{'calendar__item--actual': item.today}" class="calendar__item">
-              <span class="hide--mobile item item--day">{{::item.day}}</span>
-              <span class="hide--desktop item item--day">m</span> 
-              <span class="item item--day-number">{{::item.numberday}}</span>
-            </div>
-          </div>
+
+        <div class="calendar__container">
+          <div class="calendar__item" ng-class="{'calendar__item--actual' : item.today}"ng-repeat="item in projectsCtrl.dates | limitTo: 6 | reverse">
+            <span class="hide--mobile item item--day">{{item.day}}</span>
+            <span class="hide--desktop item item--day">m</span> 
+            <span class="item item--day-number">{{item.numberday}}</span>
+          </div><!-- 
+       --> 
 <!--           <div class="calendar__item calendar__item--done">
             <span class="hide--mobile item item--day">{{projectsCtrl.dates.day}}</span>
             <span class="hide--desktop item item--day">m</span> 
@@ -100,7 +100,7 @@
             <span class="hide--desktop item item--day">sa</span>
             <span class="item item--day-number">07</span>
           </div> -->
-        </data-wrap-owlcarousel>
+        </div>
         </div>
       </div>  
       <button class="button-submit" type="submit">add check-in</button>
