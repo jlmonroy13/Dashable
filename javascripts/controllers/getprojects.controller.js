@@ -17,6 +17,21 @@
       vm.selectWeek                  =   [];
       vm.changeWeek                  =   changeWeek;
       vm.statusButton                =   true;
+      vm.selectedDate                =   {dateToDisplay: moment().format('dddd, MMM D'),
+                                          day: $moment().format('dddd'),
+                                          numberday: $moment().format('D'),
+                                          dateFormat: $moment().format('YYYY-MM-DD')};
+      vm.resetSelectedDates          =   resetSelectedDates;
+      vm.prueba                      =   prueba;
+      vm.newCheckin                  =   {
+                                          time_bill: {
+                                                      project_id : '',
+                                                      task_id: '',
+                                                      duration: '',
+                                                      tran_date: '',
+                                                      memo: ''
+                                                    }
+                                         };
 
       function get2weeks() {
         vm.dates = getweeksFactory.get2weeks(); //Generate a calendar array of the last two weeks
@@ -44,8 +59,8 @@
         splitDateArray();
       }
       function splitDateArray() { // Split to be able to show actual week or last week
-        vm.lastWeek = vm.dates;
-        vm.actualWeek = vm.lastWeek.splice(0, 6);
+        vm.lastWeek = vm.dates.slice(6, 12);
+        vm.actualWeek = vm.dates.slice(0, 6);
         vm.selectWeek = vm.actualWeek;
       }
       function getProjects() {
@@ -53,7 +68,6 @@
           .then(displayProjects); 
       }
       function displayProjects(data) {
-        console.log(data);
         angular.forEach(data.response, function(value, index) {
           vm.optionsProjects.push({value: value.id, text: value.title});
         });
@@ -62,6 +76,8 @@
         vm.optionsTask = [];
         projectId = response;
         getProjectTask(projectId);
+        vm.newCheckin.time_bill.project_id = projectId; //Adding project id to the object for create new checkin
+
       }
       function getProjectTask(projectId) {
         checkinFactory.getProjectTask(projectId).then(displayTask);
@@ -70,6 +86,8 @@
         angular.forEach(data.response, function(value, index) {
           vm.optionsTask.push({value: value.id, text: value.title});
         });
+        vm.newCheckin.time_bill.task_id = data.response[0].id; //Adding task id to the object for create new checkin
+        vm.newCheckin.time_bill.tran_date = vm.selectedDate.dateFormat; //Adding task id to the object for create new checkin
       }
       function changeWeek(data) {
         vm.selectWeek = data;
@@ -77,6 +95,15 @@
       }
       function changeStatusButton() {
         vm.statusButton = !vm.statusButton;
+      }
+      function resetSelectedDates(data) {
+        angular.forEach(vm.dates, function(date, index) {
+          date.selected = false;
+        });
+        // console.log(vm.newCheckin);
+      }
+      function prueba() {
+        console.log(vm.newCheckin);
       }
       getLast12Checkins();
       getProjects(); 

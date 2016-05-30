@@ -22,24 +22,29 @@
           <label class="input__label" for="task">task</label>
           </div><!-- 
         --><div class="input__group input__group--small input__group--vertical">
-          <input class="input input-js" id="duration" type="text" />
+          <input class="input input-js" id="duration" type="text" ng-model="projectsCtrl.newCheckin.time_bill.duration"/>
           <label class="input__label" for="duration">duration</label>
         </div>
         <div class="input__group">
-        <textarea name="" class="textarea input input-js input--height"></textarea>
+        <textarea name="" class="textarea input input-js input--height" ng-model="projectsCtrl.newCheckin.time_bill.memo"></textarea>
         <label class="input__label" for="workon">what did you work on?</label>
         </div>
         <div class="calendar">
           <h2 class="calendar__title">date</h2>
-          <p class="calendar__month">may</p>
+          <p class="calendar__month">{{projectsCtrl.selectedDate.dateToDisplay}}</p>
           <div class="calendar__container">
-            <calendar-week week="projectsCtrl.selectWeek"></calendar-week>
+            <calendar-week 
+              week="projectsCtrl.selectWeek"
+              date="projectsCtrl.selectedDate"
+              checkin="projectsCtrl.newCheckin"
+              reset-selected-dates="projectsCtrl.resetSelectedDates()">
+            </calendar-week>
             <span class="prev-week sprite sprite--nav-prev" ng-show="projectsCtrl.statusButton" ng-click="projectsCtrl.changeWeek(projectsCtrl.lastWeek)"></span> 
             <span class="next-week sprite sprite--nav-next" ng-hide="projectsCtrl.statusButton" ng-click="projectsCtrl.changeWeek(projectsCtrl.actualWeek)"></span>
           </div>
         </div>
       </div>  
-      <button class="button-submit" type="submit">add check-in</button>
+      <span ng-click="projectsCtrl.prueba()" class="button-submit" type="submit">add check-in</span>
     </form>
     <ul class="navbar navbar-js">
       <li class="navbar__items"><a class="navbar__links" href="/#/checkin"><span class="sprite sprite--add-active margin-right--middle vertical-align navbar__icon"></span><span class="navbar__text navbar__text--color vertical-align">New Check-in</span></a></li>

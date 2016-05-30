@@ -8,7 +8,10 @@
         restrict: 'E',
         templateUrl: '/assets/templates/pages/checkin/calendar-week.html',
         bindToController: {
-          week: '='
+          week: '=',
+          date: '=',
+          checkin: '=',
+          resetSelectedDates: '&'
         },
         controllerAs: "vm",
         controller: calendarWeekController
@@ -16,10 +19,20 @@
       return directive;
       function calendarWeekController(){
         vm = this;
-
-        vm.hola = hola;
-        function hola(data) {
-          console.log(data);
+        vm.getDate = getDate;
+        function getDate(date) {
+          vm.date = {
+            dateToDisplay: date.dateToDisplay,
+            day: date.day,
+            numberday: date.numberday,
+            dateFormat: date.date
+          };
+          selectDate(date);
+        }
+        function selectDate(date) {
+          vm.resetSelectedDates();
+          date.selected = true;
+          vm.checkin.time_bill.tran_date = vm.date.dateFormat; //Adding task id to the object for create new checkin
         }
       }
     }

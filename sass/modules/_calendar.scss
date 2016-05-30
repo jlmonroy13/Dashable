@@ -26,6 +26,7 @@
     transition: 0.5s; 
     &--actual {
       border: 1px solid $brand-active;
+      background-color: rgba($brand-default, 0.2) !important;
       &:hover {
         border: 1px solid  $brand-active !important;
       }
