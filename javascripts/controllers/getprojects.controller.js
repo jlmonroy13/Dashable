@@ -22,7 +22,7 @@
                                           numberday: $moment().format('D'),
                                           dateFormat: $moment().format('YYYY-MM-DD')};
       vm.resetSelectedDates          =   resetSelectedDates;
-      vm.prueba                      =   prueba;
+      vm.createCheckin               =   createCheckin;
       vm.newCheckin                  =   {
                                           time_bill: {
                                                       project_id : '',
@@ -102,7 +102,7 @@
         });
         // console.log(vm.newCheckin);
       }
-      function prueba() {
+      function createCheckin() {
         console.log(vm.newCheckin);
       }
       getLast12Checkins();

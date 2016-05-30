@@ -12,7 +12,8 @@
             getProjectTask:       getProjectTask,
             getTimeBills:         getTimeBills,
             getCheckinsHistory:   getCheckinsHistory,
-            createCheckin:        createCheckin
+            createCheckin:        createCheckin,
+            deleteCheckin:        deleteCheckin
           };
       return factory;
       
@@ -74,6 +75,9 @@
       }
       function createCheckin(data) {
         http.post("http://dashable-netsuite-api-st.herokuapp.com/api/1/time_bills?data="+data)
-      }     
+      }
+      function deleteCheckin(data) {
+        http.post("http://dashable-netsuite-api-st.herokuapp.com/api/1/time_bills/61995?data="+data)
+      }      
     }
 })();

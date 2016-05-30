@@ -21,13 +21,15 @@
         vm = this;
         vm.getDate = getDate;
         function getDate(date) {
-          vm.date = {
-            dateToDisplay: date.dateToDisplay,
-            day: date.day,
-            numberday: date.numberday,
-            dateFormat: date.date
-          };
-          selectDate(date);
+          if(date.future == false){
+            vm.date = {
+              dateToDisplay: date.dateToDisplay,
+              day: date.day,
+              numberday: date.numberday,
+              dateFormat: date.date
+            };
+            selectDate(date);
+          }
         }
         function selectDate(date) {
           vm.resetSelectedDates();
