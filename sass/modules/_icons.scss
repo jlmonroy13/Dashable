@@ -3,52 +3,58 @@
 	display: inline-block;
 	transition: 0.5s;
 	&--add {
-		background-position: -10px -135px;
+		background-position: -8px -135px;
 		width: 13px;
 		height: 13px;
 		position: relative;
     top: -1px;
 	}
 	&--add-active {
-		background-position: -10px 0;
+		background-position: -8px 0;
 		width: 13px;
 		height: 13px;
 		position: relative;
     top: -1px;
 	}
 	&--history {
-		background-position: -11px -120px;
+		background-position: -9px -120px;
 		width: 12px;
 		height: 12px;
 	}
 	&--history-active {
-		background-position: -11px -153px;
+		background-position: -9px -153px;
 		width: 12px;
 		height: 12px;
 	}
 	&--logout {
-		background-position: -11px -103px;
+		background-position: -9px -103px;
 		width: 12px;
 		height: 15px;
 		position: relative;
     top: -1px;
 	}
 	&--nav-next {
-		background-position: -13px -73px;
+		background-position: -11px -73px;
 		width: 8px;
 		height: 12px;
 	}
 	&--nav-prev {
-		background-position: -13px -87px;
+		background-position: -11px -87px;
 		width: 8px;
 		height: 12px;
 	}
 	&--done {
 		display: block;
 		margin: 0 auto;
-		background-position: -2px -37px;
+		background-position: 0 -37px;
 		width: 29px;
 		height: 29px;
+	}
+	&--alert {
+		display: inline-block;
+		background-position: -8px -185px;
+		width: 14px;
+		height: 12px;
 	}
 }
 

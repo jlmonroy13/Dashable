@@ -5,12 +5,10 @@
     getProjectsController.$inject = ['checkinFactory', 'getweeksFactory', '$scope', '$timeout', '$moment'];
     function getProjectsController(checkinFactory, getweeksFactory, $scope, $timeout, $moment) {
       var vm                         =   this,
+          checkinTemp,
           projectId;
-   
-      vm.getProjects                 =   getProjects;
-      vm.getProjectId                =   getProjectId;
-      vm.checkinDone                 =   false;
-      vm.configProjectsSelectize     =   {maxItems: 1, preload: true};
+  
+      vm.configProjectsSelectize     =   {maxItems: 1};
       vm.dates                       =   [];
       vm.actualWeek                  =   [];
       vm.lastWeek                    =   [];
@@ -24,16 +22,45 @@
                                           dateFormat: $moment().format('YYYY-MM-DD')};
       vm.resetSelectedDates          =   resetSelectedDates;
       vm.createCheckin               =   createCheckin;
-      vm.newCheckin                  =   {
-                                          time_bill: {
-                                                      project_id : '',
-                                                      task_id: '',
-                                                      duration: '',
-                                                      tran_date: '',
-                                                      memo: ''
-                                                    }
+      vm.getProjects                 =   getProjects;
+      vm.getProjectId                =   getProjectId;
+      vm.checkinDone                 =   false;
+      vm.statusCheckin               =   {project:false, task:false, duration: false, memo:false};
+      vm.newCheckin                  =   {time_bill: 
+                                          {
+                                            project_id : '',
+                                            task_id: '',
+                                            duration: '',
+                                            tran_date: '',
+                                            memo: ''
+                                          }
                                          };
+      function getProjects() {
+        checkinFactory.getUserProjects()
+          .then(displayProjects); 
+      }
+      function displayProjects(data) {
+        angular.forEach(data.response, function(value, index) {
+          vm.optionsProjects.push({value: value.id, text: value.title});
+        });
+      }
+      function getProjectId(response) {
+        vm.optionsTask = [];
+        projectId = response; //it get the response(porjectid) from the selectizer directive
+        getProjectTask(projectId);
+        vm.newCheckin.time_bill.project_id = projectId; //Adding project id to the object for create new checkin
 
+      }
+      function getProjectTask(projectId) {
+        checkinFactory.getProjectTask(projectId).then(displayTask);
+      }
+      function displayTask(data) {
+        angular.forEach(data.response, function(value, index) {
+          vm.optionsTask.push({value: value.id, text: value.title});
+        });
+        vm.newCheckin.time_bill.task_id = data.response[0].id; //Adding task id to the object for create new checkin
+        vm.newCheckin.time_bill.tran_date = vm.selectedDate.dateFormat; //Adding task id to the object for create new checkin
+      }                                    
       function get2weeks() {
         vm.dates = getweeksFactory.get2weeks(); //Generate a calendar array of the last two weeks
       }
@@ -64,32 +91,6 @@
         vm.actualWeek = vm.dates.slice(0, 6);
         vm.selectWeek = vm.actualWeek;
       }
-      function getProjects() {
-        checkinFactory.getUserProjects()
-          .then(displayProjects); 
-      }
-      function displayProjects(data) {
-        angular.forEach(data.response, function(value, index) {
-          vm.optionsProjects.push({value: value.id, text: value.title});
-        });
-      }
-      function getProjectId(response) {
-        vm.optionsTask = [];
-        projectId = response;
-        getProjectTask(projectId);
-        vm.newCheckin.time_bill.project_id = projectId; //Adding project id to the object for create new checkin
-
-      }
-      function getProjectTask(projectId) {
-        checkinFactory.getProjectTask(projectId).then(displayTask);
-      }
-      function displayTask(data) {
-        angular.forEach(data.response, function(value, index) {
-          vm.optionsTask.push({value: value.id, text: value.title});
-        });
-        vm.newCheckin.time_bill.task_id = data.response[0].id; //Adding task id to the object for create new checkin
-        vm.newCheckin.time_bill.tran_date = vm.selectedDate.dateFormat; //Adding task id to the object for create new checkin
-      }
       function changeWeek(data) {
         vm.selectWeek = data;
         changeStatusButton();
@@ -104,12 +105,37 @@
         // console.log(vm.newCheckin);
       }
       function createCheckin() {
-        console.log(vm.newCheckin);
-        checkinFactory.createCheckin(vm.newCheckin)
+        checkinTemp = vm.newCheckin.time_bill;
+        checkinFormValidation();
+        if(checkinTemp.project_id !=='' && checkinTemp.task_id !=='' && checkinTemp.duration !=='' && checkinTemp.tran_date !=='' && checkinTemp.memo !=='') {
+          checkinFactory.createCheckin(vm.newCheckin)
           .then( function(response) {
             vm.checkinDone = true;
             console.log(response);
           });
+        }
+      }
+      function checkinFormValidation() {
+        if(checkinTemp.project_id =='') {
+          vm.statusCheckin.project = true;
+        }else {
+          vm.statusCheckin.project = false;
+        }
+        if(checkinTemp.task_id =='') {
+          vm.statusCheckin.task = true;
+        }else {
+          vm.statusCheckin.task = false;
+        }
+        if(checkinTemp.duration =='') {
+          vm.statusCheckin.duration = true;
+        }else {
+          vm.statusCheckin.duration = false;
+        }
+        if(checkinTemp.memo =='') {
+          vm.statusCheckin.memo = true;
+        }else {
+          vm.statusCheckin.memo = false;
+        }
       }
       getLast12Checkins();
       getProjects(); 

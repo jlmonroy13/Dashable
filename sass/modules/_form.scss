@@ -6,6 +6,7 @@
   position: relative;
   font-size: 1rem;
   color: $brand-info;
+  font-weight: 300;
   &__group {
     position: relative;
     width: 100%;
@@ -41,6 +42,15 @@
       top: -10px;
     }
   }
+  &__alert {
+    margin: 0;
+    position: absolute;
+    color: $brand-alert;
+    font-size: 0.857rem;
+    left: 5px;
+    bottom: -20px;
+    font-weight: 300;
+  }
   &--height {
     height: 22px;
     @media(min-width: 401px){
@@ -51,7 +61,7 @@
     outline: none;
   }
   @media(min-width: 401px){
-    font-size: 1.285rem; // 18px
+    font-size: 1.1428rem; // 16px
   }
 }
 .form {
@@ -119,14 +129,18 @@
 }   
 .selectize-input, 
 .selectize-input input {
-  font-size: 1.285rem !important; // 18px
+  font-size: 1.1428rem !important; // 16px
   color: $brand-info !important;
   padding: 2px 0px !important;
+  font-weight: 300;
+  text-transform: capitalize;
 }
 .selectize-dropdown, 
 .selectize-input, 
 .selectize-input input {
-  font-size: 1.285rem !important; // 18px
+  font-size: 1.1428rem !important; // 16px
+  font-weight: 300;
+  text-transform: capitalize;
 }
 
 .selectize-control.single .selectize-input:after {

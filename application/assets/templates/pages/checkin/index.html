@@ -16,18 +16,22 @@
         <div class="input__group effect-select-js">
           <selectize options='projectsCtrl.optionsProjects' config="projectsCtrl.configProjectsSelectize" ng-model="id"  ng-disabled='disable' required='true' ng-change="projectsCtrl.getProjectId(id)"></selectize>
           <label class="input__label" for="project">project</label>
+          <p class="input__alert" ng-show="projectsCtrl.statusCheckin.project"><span class="margin-right--smaller sprite sprite--alert"></span>You have to select a project!</p>
         </div>
         <div class="input__group input__group--large effect-select-js">
           <selectize options='projectsCtrl.optionsTask' config="projectsCtrl.configProjectsSelectize" ng-model="algo" ng-disabled='disable' required='true'></selectize>
           <label class="input__label" for="task">task</label>
+          <p class="input__alert" ng-show="projectsCtrl.statusCheckin.task"><span class="margin-right--smaller sprite sprite--alert"></span>You have to select a task!</p>
           </div><!-- 
         --><div class="input__group input__group--small input__group--vertical">
           <input class="input input-js" id="duration" type="text" ng-model="projectsCtrl.newCheckin.time_bill.duration"/>
           <label class="input__label" for="duration">duration</label>
+          <p class="input__alert" ng-show="projectsCtrl.statusCheckin.duration"><span class="margin-right--smaller sprite sprite--alert"></span>It requires a value!</p>
         </div>
         <div class="input__group">
-        <textarea name="" class="textarea input input-js input--height" ng-model="projectsCtrl.newCheckin.time_bill.memo"></textarea>
-        <label class="input__label" for="workon">what did you work on?</label>
+          <textarea name="" class="textarea input input-js input--height" ng-model="projectsCtrl.newCheckin.time_bill.memo"></textarea>
+          <label class="input__label" for="workon">what did you work on?</label>
+          <p class="input__alert" ng-show="projectsCtrl.statusCheckin.memo"><span class="margin-right--smaller sprite sprite--alert"></span>This input requires a value!</p>
         </div>
         <div class="calendar">
           <h2 class="calendar__title">date <span class="calendar__title--sub margin-left--small">{{projectsCtrl.selectedDate.dateToDisplay}}</span></h2>
