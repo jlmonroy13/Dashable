@@ -1,6 +1,8 @@
 <div ng-click="vm.getDate(item)" class="calendar__item" ng-class="{'calendar__item--actual' : item.selected, 'calendar__item--done' : item.checkin, 'calendar__item--future' : item.future}" ng-repeat="item in vm.week | reverse">
+  <div class="calendar__item-border" ng-class="{'calendar__item-border--actual' : item.selected && !item.checkin, 'calendar__item-border--done' : item.checkin && !item.selected, 'calendar__item-border--done-selected' : item.checkin && item.selected}">
     <span class="hide--mobile item item--day">{{item.day}}</span>
     <span class="hide--desktop item item--day">{{item.day | limitTo: 2}}</span> 
     <span class="item item--day-number">{{item.numberday}}</span>
+  </div>  
 </div><!-- 
 -->

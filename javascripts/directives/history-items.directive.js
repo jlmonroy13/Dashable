@@ -2,8 +2,8 @@
   angular
     .module("CheckIn")
     .directive('historyItems', historyItems);
-
-    function historyItems() { 
+    historyItems.$inject = ['checkinFactory'];
+    function historyItems(checkinFactory) { 
       var directive = {
         restrict: 'E',
         templateUrl: '/assets/templates/pages/history/history-items.html',
@@ -27,7 +27,7 @@
                               }
                              };
         function removeCheckin(data) {
-          console.log(data);
+          console.log(data.id);
           vm.deleteCheckin = {time_bill: 
                               {
                                 project_id : data.project.id,
@@ -37,7 +37,11 @@
                                 memo: data.memo
                               }
                              };
-          console.log(vm.deleteCheckin);                   
+          console.log(vm.deleteCheckin);
+          checkinFactory.deleteCheckin(data.id)//Get last 15 checkins from Netsuite API
+            .then( function(response) {
+              console.log(response);
+            });                   
         }
       }
     }

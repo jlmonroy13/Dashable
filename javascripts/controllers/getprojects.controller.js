@@ -9,7 +9,8 @@
    
       vm.getProjects                 =   getProjects;
       vm.getProjectId                =   getProjectId;
-      vm.configProjectsSelectize     =   {maxItems: 1};
+      vm.checkinDone                 =   false;
+      vm.configProjectsSelectize     =   {maxItems: 1, preload: true};
       vm.dates                       =   [];
       vm.actualWeek                  =   [];
       vm.lastWeek                    =   [];
@@ -104,6 +105,11 @@
       }
       function createCheckin() {
         console.log(vm.newCheckin);
+        checkinFactory.createCheckin(vm.newCheckin)
+          .then( function(response) {
+            vm.checkinDone = true;
+            console.log(response);
+          });
       }
       getLast12Checkins();
       getProjects(); 

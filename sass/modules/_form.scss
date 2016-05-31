@@ -35,6 +35,7 @@
     color: rgba($brand-info, 0.4);
     text-transform: capitalize;
     transition: 0.3s;
+    font-weight: 300;
     @media(min-width: 401px){
       font-size: 1.285rem; // 18px
       top: -10px;
@@ -82,7 +83,7 @@
 .button-submit {
   display: block;
   text-align: center;
-  width: 100%;
+  width: 99.7%;
   text-transform: uppercase;
   padding: 10px 0;
   font-size: 1rem;

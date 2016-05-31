@@ -1,11 +1,11 @@
 <div class="container"> 
   <div class="container__header">
-    <h1 class="container__title">
+    <h1 class="container__title" ng-hide="projectsCtrl.checkinDone">
       <span class="container__subtitle">today's</span>
       check-in
     </h1>
-    <h1 class="container__title hidden">
-      <span class="container__subtitle visibility-hidden">today's</span>
+    <h1 class="container__title container__title--color" ng-show="projectsCtrl.checkinDone">
+      <span class="container__subtitle visibility-hidden">today's</span> 
       thank you!
     </h1>
     <img class="button-menu-mobile button-menu-mobile-js" src="assets/images/mobile-btn.svg" alt="Mobile button hamburger" />
@@ -30,8 +30,8 @@
         <label class="input__label" for="workon">what did you work on?</label>
         </div>
         <div class="calendar">
-          <h2 class="calendar__title">date</h2>
-          <p class="calendar__month">{{projectsCtrl.selectedDate.dateToDisplay}}</p>
+          <h2 class="calendar__title">date <span class="calendar__title--sub margin-left--small">{{projectsCtrl.selectedDate.dateToDisplay}}</span></h2>
+          <p class="calendar__month"></p>
           <div class="calendar__container">
             <calendar-week 
               week="projectsCtrl.selectWeek"
@@ -52,7 +52,7 @@
       <li class="navbar__items"><a class="navbar__links" href="/#/home"><span class="sprite sprite--logout margin-right--middle vertical-align navbar__icon"></span><span class="navbar__text vertical-align">Logout</span></a></li>
     </ul>
     <div class="form-shadow"></div>
-    <div class="container__form--done">
+    <div class="container__form--done" ng-class="{'container__form--done-active' : projectsCtrl.checkinDone}">
       <div class="container__form--icon-done">
         <span class="sprite sprite--done"></span>
         <p class="container__form--text-done">done!</p> 
@@ -85,15 +85,6 @@
     $select.click(function() {
       $(this).find('.input__label').addClass('active-input-js');
     }); 
-    
-    //Use selectize plugin only on desktop
-    // if (ancho > 400) {
-    //   $('.js-select').selectize({
-    //     sortField: 'text'
-    //   });
-    // }else if (ancho <= 400) {
-    //   $('.empty-option-js').hide();
-    // }
     // Mobile Menu
     $mobileMenu.click(function() {
       $nav.toggleClass('navbar__mobile');

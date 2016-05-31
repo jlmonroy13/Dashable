@@ -11,29 +11,32 @@
     color: $brand-active;
     font-size: 0.857rem; 
     text-transform: uppercase;
-    margin-bottom: 10px;
+    margin-bottom: 38px;
+    &--sub {
+      text-transform: capitalize;
+      color: $brand-info;
+      font-weight: 300;
+      font-size: 0.7857rem;
+    }
   }
   &__item {    
-    width: 14.5%;
-    display: inline-block;  
-    padding: 0.357em 0;
-    margin-right: 6px;
     background-color: rgba($brand-default, 0.2);
-    text-align: center;
     border-radius: 5px;
     border: 1px solid transparent;
     cursor: pointer;
+    display: inline-block;  
+    margin-right: 6px;
+    text-align: center;                                                      
     transition: 0.5s; 
+    width: 14.5%;
     &--actual {
       border: 1px solid $brand-active;
-      background-color: rgba($brand-default, 0.2) !important;
       &:hover {
         border: 1px solid  $brand-active !important;
       }
     }
     &--done {
       border: 1px solid $brand-active;
-      background-color: $brand-active;
       &:hover {
         border: 1px solid  $brand-active !important;
       }
@@ -44,16 +47,26 @@
         border: 1px solid  transparent !important;
       }
     }
-    &:hover {
-      border: 1px solid $brand-info;
-    }
-    @media(min-width: 401px){
-      padding: 1.071em 0;
-    }
     @media(max-width: 401px){
       margin-right: 4px;
       width: 14%;
-      padding: 0.285em 0; 
+    }
+  }
+  &__item-border {
+    padding: 0.142em 0;
+    border: 3px solid transparent;
+    border-radius: 3px;
+    @media(min-width: 401px){
+      padding: 0.857em 0;
+      border: 3px solid transparent;
+    }
+    &--done {
+      background-color: $brand-active;
+    }
+    &--done-selected {
+      background-color: $brand-active;
+      border: 0;
+      margin: 3px;
     }
   }
   &__month {
@@ -78,8 +91,8 @@
     margin-bottom: 5px;
     text-transform: capitalize; 
     @media(min-width: 401px){
-      font-size: 0.714rem; // 10px
-      font-weight: 300;
+      font-size: 0.642rem; // 9px
+      font-weight: 400;
     }
   }
   &--day-number {

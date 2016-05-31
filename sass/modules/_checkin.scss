@@ -13,7 +13,7 @@
     margin-top: 10px;
     @media(min-width: 401px){
       font-size: 3.142rem; // 44px
-      max-width: 290px;
+      max-width: 283px;
       margin-bottom: 10px;
     }
     &--history {
@@ -24,6 +24,9 @@
             max-width: 244px;
         margin-bottom: 10px;
       }
+    }
+    &--color {
+      color: $brand-active;
     }
   }
   &__subtitle {
@@ -41,6 +44,7 @@
     height: 373px;
     &--done {
       position: absolute;
+      top: 100%;
       bottom: 0;
       left: 0;
       right: 0;
@@ -48,7 +52,13 @@
       z-index: 4;
       border-radius: 5px;
       text-align: center;
-      transition: 1s;
+      transition: 0.5s;
+    }
+    &--done-active {
+      top: 0 !important;
+      .container__form--icon-done {
+        opacity: 1;
+      }
     }
     &--icon-done {
       position: absolute;
@@ -57,7 +67,7 @@
       transform: translate(-50%,-50%);
       z-index: 5;
       transition: 1s;
-      display: none;
+      opacity: 0;
     }
     &--text-done {
       color: $brand-info;

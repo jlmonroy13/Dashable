@@ -7,7 +7,8 @@
     checkinFactory.$inject = ['$http'];
 
     function checkinFactory($http) {
-      var factory = {
+      var url     = "http://dashable-netsuite-api-prod.herokuapp.com/",
+          factory = {
             getUserProjects:      getUserProjects,
             getProjectTask:       getProjectTask,
             getTimeBills:         getTimeBills,
@@ -21,7 +22,7 @@
         var settings = {
           "async": true,
           "crossDomain": true,
-          "url": "http://dashable-netsuite-api-st.herokuapp.com/api/1/projects",
+          "url": url+"api/1/projects",
           "method": "GET",
           "headers": {
             "content-type": "application/json"
@@ -35,7 +36,7 @@
         var settings = { 
           "async": true,
           "crossDomain": true,
-          "url": "http://dashable-netsuite-api-st.herokuapp.com/api/1/projects/"+projectID+"/tasks",
+          "url": url+"api/1/projects/"+projectID+"/tasks",
           "method": "GET",
           "headers": {
             "content-type": "application/json"
@@ -49,7 +50,7 @@
         var settings = { 
           "async": true,
           "crossDomain": true,
-          "url": "http://dashable-netsuite-api-st.herokuapp.com/api/1/time_bills/recent",
+          "url": url+"api/1/time_bills/recent",
           "method": "GET",
           "headers": {
             "content-type": "application/json"
@@ -63,7 +64,7 @@
         var settings = { 
           "async": true,
           "crossDomain": true,
-          "url": "http://dashable-netsuite-api-st.herokuapp.com/api/1/time_bills/history",
+          "url": url+"api/1/time_bills/history",
           "method": "GET",
           "headers": {
             "content-type": "application/json"
@@ -74,10 +75,16 @@
         });
       }
       function createCheckin(data) {
-        http.post("http://dashable-netsuite-api-st.herokuapp.com/api/1/time_bills?data="+data)
+        return $http.post(url+"api/1/time_bills", data)
+          .then(function (response){
+            return response;
+          });
       }
       function deleteCheckin(data) {
-        http.post("http://dashable-netsuite-api-st.herokuapp.com/api/1/time_bills/61995?data="+data)
+        return $http.delete(url+"api/1/time_bills/"+data)
+          .then(function (response) {
+            return response;
+          });
       }      
     }
 })();
