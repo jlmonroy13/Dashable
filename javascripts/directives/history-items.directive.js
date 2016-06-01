@@ -8,7 +8,8 @@
         restrict: 'E',
         templateUrl: '/assets/templates/pages/history/history-items.html',
         bindToController: {
-          checkins: '='
+          checkins: '=',
+          deleteStatus: '='
         },
         controllerAs: "vm",
         controller: historyDirectiveController
@@ -38,10 +39,11 @@
                               }
                              };
           console.log(vm.deleteCheckin);
-          checkinFactory.deleteCheckin(data.id)//Get last 15 checkins from Netsuite API
-            .then( function(response) {
+          checkinFactory.deleteCheckin(data.id)
+            .then(function(response) {
               console.log(response);
-            });                   
+              vm.deleteStatus = true;
+            })               
         }
       }
     }

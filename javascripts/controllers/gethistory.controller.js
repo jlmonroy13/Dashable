@@ -6,7 +6,8 @@
     function getHistoryController(checkinFactory) {
       var vm  = this;
 
-      vm.getCheckinsHistory = getCheckinsHistory; 
+      vm.getCheckinsHistory   =   getCheckinsHistory; 
+      vm.wasDeleted           =   false;
 
       function getCheckinsHistory() {
         checkinFactory.getCheckinsHistory()//jwt

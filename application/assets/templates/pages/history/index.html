@@ -8,16 +8,25 @@
   </div>
   <div class="container__form">
     <div class="history">
-      <history-items  ng-repeat="history in historyCtrl.history" checkins="history"
+      <history-items  
+        ng-repeat="history in historyCtrl.history" 
+        checkins="history"
+        delete-status="historyCtrl.wasDeleted"
       ></history-items>  
     </div>
-    <span us-spinner="{radius:12, width:5, length: 8, color: '#9B9B9B'}"></span>
+    <span us-spinner="{radius:12, width:5, length: 6, color: '#9B9B9B'}"></span>
     <ul class="navbar navbar-js">
       <li class="navbar__items"><a class="navbar__links" href="/#/checkin"><span class="sprite sprite--add margin-right--middle vertical-align navbar__icon"></span><span class="navbar__text vertical-align">New Check-in</span></a></li>
       <li class="navbar__items"><a class="navbar__links" href="/#/history"><span class="sprite sprite--history-active margin-right--middle vertical-align navbar__icon"></span><span class="navbar__text navbar__text--color vertical-align">History</span></a></li>
       <li class="navbar__items"><a class="navbar__links" href="index.html"><span class="sprite sprite--logout margin-right--middle vertical-align navbar__icon"></span><span class="navbar__text vertical-align">Logout</span></a></li>
     </ul>
     <div class="form-shadow"></div>
+    <div class="container__form--done container__form--done-delete" ng-class="{'container__form--done-active' : historyCtrl.wasDeleted}">
+      <div class="container__form--icon-done">
+        <span class="sprite sprite--delete"></span> 
+        <p class="container__form--text-done">Your check-in has been removed!</p> 
+      </div>
+    </div>
   </div>
 </div>  
 <span class="line line--left"></span>

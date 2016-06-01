@@ -67,10 +67,6 @@
 .form {
   position: relative;
   z-index: 2;
-  height: 373px;
-  @media(min-width: 401px){
-    height: 539px;
-  }
 }
 .form-padding {
   padding: 40px 8% 0;
@@ -111,10 +107,6 @@
   &:hover {
     background-color: rgba($brand-primary, 0.7);
     border: 1px solid rgba($brand-primary, 0.7);
-  }
-  @media(max-width: 401px){
-    position: relative;
-    top: -20px;
   }
 }
 .selectize-input, 

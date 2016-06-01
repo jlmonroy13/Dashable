@@ -41,7 +41,6 @@
     background-size: center;
     border-radius: 5px;
     position: relative;
-    height: 373px;
     &--done {
       position: absolute;
       top: 100%;
@@ -53,6 +52,9 @@
       border-radius: 5px;
       text-align: center;
       transition: 0.5s;
+      &-delete {
+        background-color: $brand-alert;
+      }
     }
     &--done-active {
       top: 0 !important;
@@ -75,9 +77,6 @@
       font-weight: 300;
       text-transform: capitalize;
       margin-top: 10px;
-    }
-    @media(min-width: 401px){
-      height: 539px;
     }
   }
   &__header {
