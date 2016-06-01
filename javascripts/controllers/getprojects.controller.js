@@ -2,8 +2,8 @@
   angular
     .module('CheckIn')
     .controller('getProjectsController', getProjectsController);
-    getProjectsController.$inject = ['checkinFactory', 'getweeksFactory', '$scope', '$timeout', '$moment'];
-    function getProjectsController(checkinFactory, getweeksFactory, $scope, $timeout, $moment) {
+    getProjectsController.$inject = ['checkinFactory', 'getweeksFactory', '$timeout', '$moment'];
+    function getProjectsController(checkinFactory, getweeksFactory, $timeout, $moment) {
       var vm                         =   this,
           checkinTemp,
           projectId;

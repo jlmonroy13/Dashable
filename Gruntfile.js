@@ -42,7 +42,10 @@ module.exports = function(grunt) {
           'node_modules/angular-google-gapi/dist/angular-google-gapi.min.js',
           'bower_components/angular-local-storage/dist/angular-local-storage.js',
           'bower_components/moment/moment.js',
-          'bower_components/angular-momentjs/angular-momentjs.js'
+          'bower_components/angular-momentjs/angular-momentjs.js',
+          'bower_components/spin.js/spin.js',
+          'bower_components/angular-spinner/angular-spinner.js',
+          'bower_components/angular-loading-spinner/angular-loading-spinner.js'
 
         ], 
         dest: 'application/assets/javascripts/vendor/bundle.js'
