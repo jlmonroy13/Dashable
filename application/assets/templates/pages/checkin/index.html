@@ -26,7 +26,7 @@
         --><div class="input__group input__group--small input__group--vertical">
           <input class="input input-js" id="duration" type="text" ng-model="projectsCtrl.newCheckin.time_bill.duration"/>
           <label class="input__label" for="duration">duration</label>
-          <p class="input__alert" ng-show="projectsCtrl.statusCheckin.duration"><span class="margin-right--smaller sprite sprite--alert"></span>It requires a value!</p>
+          <p class="input__alert" ng-show="projectsCtrl.statusCheckin.duration"><span class="margin-right--smaller sprite sprite--alert"></span>It requires a num!</p>
         </div>
         <div class="input__group">
           <textarea name="" class="textarea input input-js input--height" ng-model="projectsCtrl.newCheckin.time_bill.memo"></textarea>
@@ -50,7 +50,7 @@
       </div>  
       <span ng-click="projectsCtrl.createCheckin()" class="button-submit" type="submit">add check-in</span>
     </form>
-    <span us-spinner="{radius:12, width:5, length: 6, color: '#D8D8D8'}"></span>
+    <span us-spinner="{radius:12, width:3, length: 4, color: '#D8D8D8'}"></span>
     <ul class="navbar navbar-js">
       <li class="navbar__items"><a class="navbar__links" href="/#/checkin"><span class="sprite sprite--add-active margin-right--middle vertical-align navbar__icon"></span><span class="navbar__text navbar__text--color vertical-align">New Check-in</span></a></li>
       <li class="navbar__items"><a class="navbar__links" href="/#/history"><span class="sprite sprite--history margin-right--middle vertical-align navbar__icon"></span><span class="navbar__text vertical-align">History</span></a></li>

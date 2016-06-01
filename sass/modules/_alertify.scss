@@ -1,0 +1,6 @@
+.alertify {
+  z-index: 2;
+}
+.alertify-logs>.error {
+  background-color: $brand-alert;
+}

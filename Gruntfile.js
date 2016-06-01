@@ -45,8 +45,9 @@ module.exports = function(grunt) {
           'bower_components/angular-momentjs/angular-momentjs.js',
           'bower_components/spin.js/spin.js',
           'bower_components/angular-spinner/angular-spinner.js',
-          'bower_components/angular-loading-spinner/angular-loading-spinner.js'
-
+          'bower_components/angular-loading-spinner/angular-loading-spinner.js',
+          'bower_components/alertifyjs/dist/js/alertify.js',
+          'bower_components/alertifyjs/dist/js/ngAlertify.js'
         ], 
         dest: 'application/assets/javascripts/vendor/bundle.js'
       },
@@ -81,7 +82,6 @@ module.exports = function(grunt) {
             'javascripts/services/httpInterceptor.factory.js',
             'javascripts/services/checkin.factory.js',
             'javascripts/services/getweeks.factory.js',
-            'javascripts/directives/owl_carousel.directive.js',
             'javascripts/directives/history-items.directive.js',
             'javascripts/directives/calendar-week.directive.js',
             'javascripts/controllers/login.controller.js',

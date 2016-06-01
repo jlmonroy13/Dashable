@@ -2,8 +2,8 @@
   angular
     .module('CheckIn')
     .controller('loginController', loginController);
-    loginController.$inject = ['$window', 'authenticationFactory', 'checkinFactory', '$location'];
-    function loginController($window, authenticationFactory, checkinFactory, $location) {
+    loginController.$inject = ['$window', 'authenticationFactory', 'checkinFactory', '$location', 'alertify'];
+    function loginController($window, authenticationFactory, checkinFactory, $location, alertify) {
       var vm  = this;
       
       vm.login = login; 

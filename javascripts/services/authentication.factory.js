@@ -4,9 +4,9 @@
     .module('CheckIn')
     .factory('authenticationFactory', authenticationFactory);
 
-    authenticationFactory.$inject = ['$http','GAuth', 'GData', 'localStorageService'];
+    authenticationFactory.$inject = ['$http','GAuth', 'GData', 'localStorageService', 'alertify'];
 
-    function authenticationFactory($http, GAuth, GData, localStorageService) {
+    function authenticationFactory($http, GAuth, GData, localStorageService, alertify) {
       var factory = {
             login: login
           };
@@ -20,13 +20,12 @@
         }
         function getUserInfoAndToken() {
           console.log(GData.getUser());
+          alertify.log('Welcome! you have signed up successfully');
           return GAuth.getToken().then(getJWT);
         }
         function getJWT(token){
-          console.log(token);
           return $http.post("http://dashable-netsuite-api-prod.herokuapp.com/users/auth/google_oauth2/callback?access_token="+token.access_token)
           .then(function(response) {
-            console.log(response);
             setLocalStorage('jwt', response.data.response.jwt)
             return response.data;
           });

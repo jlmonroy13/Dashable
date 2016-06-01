@@ -2,8 +2,8 @@
   angular
     .module('CheckIn')
     .controller('getProjectsController', getProjectsController);
-    getProjectsController.$inject = ['checkinFactory', 'getweeksFactory', '$timeout', '$moment'];
-    function getProjectsController(checkinFactory, getweeksFactory, $timeout, $moment) {
+    getProjectsController.$inject = ['checkinFactory', 'getweeksFactory', '$timeout', '$moment', 'alertify'];
+    function getProjectsController(checkinFactory, getweeksFactory, $timeout, $moment, alertify) {
       var vm                         =   this,
           checkinTemp,
           projectId;
@@ -41,7 +41,7 @@
       }
       function displayProjects(data) {
         angular.forEach(data.response, function(value, index) {
-          vm.optionsProjects.push({value: value.id, text: value.title});
+          vm.optionsProjects.push({value: value.id, text: value.name});
         });
       }
       function getProjectId(response) {
@@ -56,7 +56,7 @@
       }
       function displayTask(data) {
         angular.forEach(data.response, function(value, index) {
-          vm.optionsTask.push({value: value.id, text: value.title});
+          vm.optionsTask.push({value: value.id, text: value.name});
         });
         vm.newCheckin.time_bill.task_id = data.response[0].id; //Adding task id to the object for create new checkin
         vm.newCheckin.time_bill.tran_date = vm.selectedDate.dateFormat; //Adding task id to the object for create new checkin
@@ -113,6 +113,8 @@
             vm.checkinDone = true;
             console.log(response);
           });
+        }else {
+          alertify.error("You have to complete all fields!");
         }
       }
       function checkinFormValidation() {

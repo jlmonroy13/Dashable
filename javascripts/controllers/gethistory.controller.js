@@ -2,8 +2,8 @@
   angular
     .module('CheckIn')
     .controller('getHistoryController', getHistoryController);
-    getHistoryController.$inject = ['checkinFactory'];
-    function getHistoryController(checkinFactory) {
+    getHistoryController.$inject = ['checkinFactory', 'alertify'];
+    function getHistoryController(checkinFactory, alertify) {
       var vm  = this;
 
       vm.getCheckinsHistory   =   getCheckinsHistory; 

@@ -17,6 +17,9 @@ angular
         controller: 'getHistoryController',
         controllerAs: 'historyCtrl'
       })
+      .when('/edit-checkin', {
+        templateUrl: '/assets/templates/pages/checkin/index.html'
+      })
       .when('/', {
         templateUrl: '/assets/templates/pages/home/index.html',
         controller: 'loginController',

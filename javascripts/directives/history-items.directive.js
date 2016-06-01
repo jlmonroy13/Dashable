@@ -2,8 +2,8 @@
   angular
     .module("CheckIn")
     .directive('historyItems', historyItems);
-    historyItems.$inject = ['checkinFactory'];
-    function historyItems(checkinFactory) { 
+    historyItems.$inject = ['checkinFactory', 'alertify'];
+    function historyItems(checkinFactory, alertify) { 
       var directive = {
         restrict: 'E',
         templateUrl: '/assets/templates/pages/history/history-items.html',
@@ -28,22 +28,27 @@
                               }
                              };
         function removeCheckin(data) {
-          console.log(data.id);
-          vm.deleteCheckin = {time_bill: 
-                              {
-                                project_id : data.project.id,
-                                task_id: data.task.id,
-                                duration: data.hours,
-                                tran_date: data.date,
-                                memo: data.memo
-                              }
-                             };
-          console.log(vm.deleteCheckin);
-          checkinFactory.deleteCheckin(data.id)
-            .then(function(response) {
-              console.log(response);
-              vm.deleteStatus = true;
-            })               
+          alertify.confirm('Are you sure you want to delete this Check-in?',
+              function onOk() {
+                console.log(data.id);
+                vm.deleteCheckin = {time_bill: 
+                                    {
+                                      project_id : data.project.id,
+                                      task_id: data.task.id,
+                                      duration: data.hours,
+                                      tran_date: data.date,
+                                      memo: data.memo
+                                    }
+                                   };
+                console.log(vm.deleteCheckin);
+                checkinFactory.deleteCheckin(data.id)
+                  .then(function(response) {
+                    console.log(response);
+                    vm.deleteStatus = true;
+                  });  
+              }, 
+              function onCancel() {}
+          );              
         }
       }
     }
