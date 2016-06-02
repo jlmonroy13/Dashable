@@ -1,7 +1,7 @@
 .sprite {
 	background: url('../images/sprites.svg') no-repeat;
 	display: inline-block;
-	transition: 0.5s;
+	transition: transform 0.5s;
 	&--add {
 		background-position: -8px -135px;
 		width: 13px;

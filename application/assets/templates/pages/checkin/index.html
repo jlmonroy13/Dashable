@@ -1,11 +1,11 @@
 <div class="container"> 
   <div class="container__header">
-    <h1 class="container__title" ng-hide="projectsCtrl.checkinDone">
-      <span class="container__subtitle">today's</span>
+    <h1 class="container__title" ng-hide="checkinCtrl.checkinDone">
+      <span class="container__subtitle">{{checkinCtrl.textFormTitle}}</span>
       check-in
     </h1>
-    <h1 class="container__title container__title--color" ng-show="projectsCtrl.checkinDone">
-      <span class="container__subtitle visibility-hidden">today's</span> 
+    <h1 class="container__title container__title--color" ng-show="checkinCtrl.checkinDone">
+      <span class="container__subtitle visibility-hidden">{{checkinCtrl.textFormTitle}}</span> 
       thank you!
     </h1>
     <img class="button-menu-mobile button-menu-mobile-js" src="assets/images/mobile-btn.svg" alt="Mobile button hamburger" />
@@ -13,51 +13,51 @@
   <div class="container__form">
     <form class="form" action="">
       <div class="form-padding">
-        <div class="input__group effect-select-js">
-          <selectize options='projectsCtrl.optionsProjects' config="projectsCtrl.configProjectsSelectize" ng-model="id"  ng-disabled='disable' required='true' ng-change="projectsCtrl.getProjectId(id)"></selectize>
-          <label class="input__label" for="project">project</label>
-          <p class="input__alert" ng-show="projectsCtrl.statusCheckin.project"><span class="margin-right--smaller sprite sprite--alert"></span>You have to select a project!</p>
+        <div class="input__group">
+          <selectize options='checkinCtrl.optionsProjects' config="checkinCtrl.configProjectsSelectize" ng-model="checkinCtrl.projectId"  ng-disabled='disable' required='true' ng-change="checkinCtrl.getProjectId(checkinCtrl.projectId)"></selectize>
+          <label ng-class="{'active-input-js' : checkinCtrl.projectId !==''}" class="input__label" for="project">project</label>
+          <p class="input__alert" ng-show="checkinCtrl.statusCheckin.project"><span class="margin-right--smaller sprite sprite--alert"></span>You have to select a project!</p>
         </div>
-        <div class="input__group input__group--large effect-select-js">
-          <selectize options='projectsCtrl.optionsTask' config="projectsCtrl.configProjectsSelectize" ng-model="algo" ng-disabled='disable' required='true'></selectize>
-          <label class="input__label" for="task">task</label>
-          <p class="input__alert" ng-show="projectsCtrl.statusCheckin.task"><span class="margin-right--smaller sprite sprite--alert"></span>You have to select a task!</p>
+        <div class="input__group input__group--large">
+          <selectize options='checkinCtrl.optionsTask' config="checkinCtrl.configProjectsSelectize2" ng-model="checkinCtrl.taskId" ng-disabled='disable' required='true'></selectize>
+          <label ng-class="{'active-input-js' : checkinCtrl.taskId !==''}" class="input__label" for="task">task</label>
+          <p class="input__alert" ng-show="checkinCtrl.statusCheckin.task"><span class="margin-right--smaller sprite sprite--alert"></span>You have to select a task!</p>
           </div><!-- 
         --><div class="input__group input__group--small input__group--vertical">
-          <input class="input input-js" id="duration" type="text" ng-model="projectsCtrl.newCheckin.time_bill.duration"/>
-          <label class="input__label" for="duration">duration</label>
-          <p class="input__alert" ng-show="projectsCtrl.statusCheckin.duration"><span class="margin-right--smaller sprite sprite--alert"></span>It requires a num!</p>
+          <input ng-click="effect=true" ng-blur="effect=false" ng-init="effect=false" class="input input-js" id="duration" type="text" ng-model="checkinCtrl.newCheckin.time_bill.duration"/>
+          <label ng-class="{'active-input-js' : effect || checkinCtrl.newCheckin.time_bill.duration !==''}" class="input__label" for="duration">duration</label>
+          <p class="input__alert" ng-show="checkinCtrl.statusCheckin.duration"><span class="margin-right--smaller sprite sprite--alert"></span>It requires a num!</p>
         </div>
         <div class="input__group">
-          <textarea name="" class="textarea input input-js input--height" ng-model="projectsCtrl.newCheckin.time_bill.memo"></textarea>
-          <label class="input__label" for="workon">what did you work on?</label>
-          <p class="input__alert" ng-show="projectsCtrl.statusCheckin.memo"><span class="margin-right--smaller sprite sprite--alert"></span>This input requires a value!</p>
+          <textarea ng-click="effect1=true" ng-blur="effect1=false" ng-init="effect1=false" name="" class="textarea input input-js input--height" ng-model="checkinCtrl.newCheckin.time_bill.memo"></textarea>
+          <label ng-class="{'active-input-js' : effect1 || checkinCtrl.newCheckin.time_bill.memo !==''}" class="input__label" for="workon">what did you work on?</label>
+          <p class="input__alert" ng-show="checkinCtrl.statusCheckin.memo"><span class="margin-right--smaller sprite sprite--alert"></span>This input requires a value!</p>
         </div>
         <div class="calendar">
-          <h2 class="calendar__title">date <span class="calendar__title--sub margin-left--small">{{projectsCtrl.selectedDate.dateToDisplay}}</span></h2>
+          <h2 class="calendar__title">date <span class="calendar__title--sub margin-left--small">{{checkinCtrl.selectedDate.dateToDisplay}}</span></h2>
           <p class="calendar__month"></p>
           <div class="calendar__container">
             <calendar-week 
-              week="projectsCtrl.selectWeek"
-              date="projectsCtrl.selectedDate"
-              checkin="projectsCtrl.newCheckin"
-              reset-selected-dates="projectsCtrl.resetSelectedDates()">
+              week="checkinCtrl.selectWeek"
+              date="checkinCtrl.selectedDate"
+              checkin="checkinCtrl.newCheckin"
+              reset-selected-dates="checkinCtrl.resetSelectedDates()">
             </calendar-week>
-            <span class="prev-week sprite sprite--nav-prev" ng-show="projectsCtrl.statusButton" ng-click="projectsCtrl.changeWeek(projectsCtrl.lastWeek)"></span> 
-            <span class="next-week sprite sprite--nav-next" ng-hide="projectsCtrl.statusButton" ng-click="projectsCtrl.changeWeek(projectsCtrl.actualWeek)"></span>
+            <span class="prev-week sprite sprite--nav-prev" ng-show="checkinCtrl.statusButton" ng-click="checkinCtrl.changeWeek(checkinCtrl.lastWeek)"></span> 
+            <span class="next-week sprite sprite--nav-next" ng-hide="checkinCtrl.statusButton" ng-click="checkinCtrl.changeWeek(checkinCtrl.actualWeek)"></span>
           </div>
         </div>
       </div>  
-      <span ng-click="projectsCtrl.createCheckin()" class="button-submit" type="submit">add check-in</span>
+      <span ng-click="checkinCtrl.createCheckin()" class="button-submit" type="submit">{{checkinCtrl.textFormButton}}</span>
     </form>
     <span us-spinner="{radius:12, width:3, length: 4, color: '#D8D8D8'}"></span>
     <ul class="navbar navbar-js">
-      <li class="navbar__items"><a class="navbar__links" href="/#/checkin"><span class="sprite sprite--add-active margin-right--middle vertical-align navbar__icon"></span><span class="navbar__text navbar__text--color vertical-align">New Check-in</span></a></li>
-      <li class="navbar__items"><a class="navbar__links" href="/#/history"><span class="sprite sprite--history margin-right--middle vertical-align navbar__icon"></span><span class="navbar__text vertical-align">History</span></a></li>
+      <li class="navbar__items"><a class="navbar__links" href="/#/checkin"><span ng-class="{'sprite--add-active':checkinCtrl.leftNavStatus }" class="sprite sprite--add margin-right--middle vertical-align navbar__icon"></span><span ng-class="{'navbar__text--color':checkinCtrl.leftNavStatus }" class="navbar__text vertical-align">New Check-in</span></a></li>
+      <li class="navbar__items"><a class="navbar__links" href="/#/history"><span ng-class="{'sprite--history-active': !checkinCtrl.leftNavStatus }" class="sprite sprite--history margin-right--middle vertical-align navbar__icon"></span><span ng-class="{'navbar__text--color': !checkinCtrl.leftNavStatus }" class="navbar__text vertical-align">History</span></a></li>
       <li class="navbar__items"><a class="navbar__links" href="/#/home"><span class="sprite sprite--logout margin-right--middle vertical-align navbar__icon"></span><span class="navbar__text vertical-align">Logout</span></a></li>
     </ul>
     <div class="form-shadow"></div>
-    <div class="container__form--done" ng-class="{'container__form--done-active' : projectsCtrl.checkinDone}">
+    <div class="container__form--done" ng-class="{'container__form--done-active' : checkinCtrl.checkinDone}">
       <div class="container__form--icon-done">
         <span class="sprite sprite--done"></span>
         <p class="container__form--text-done">done!</p> 
@@ -73,22 +73,8 @@
 <img src="assets/images/koombea-logo.svg" alt="Koombea Logo" class="logo" />
 <script>
   $(function() {
-    var $input    =     $('.input-js'),
-    $select       =     $('.effect-select-js')
-    $mobileMenu   =     $('.button-menu-mobile-js'),
-    $nav          =     $('.navbar-js');
-
-    // Labels inputs effect  
-    $input.blur(function() {
-      if( $(this).val() !== '') {
-        $(this).next('.input__label').addClass('active-input-js');
-      } else {
-        $(this).next('.input__label').removeClass('active-input-js');
-      }
-    });
-    $select.click(function() {
-      $(this).find('.input__label').addClass('active-input-js');
-    }); 
+    var $mobileMenu   =     $('.button-menu-mobile-js'),
+        $nav          =     $('.navbar-js');
     // Mobile Menu
     $mobileMenu.click(function() {
       $nav.toggleClass('navbar__mobile');

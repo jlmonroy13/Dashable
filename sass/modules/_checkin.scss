@@ -13,7 +13,7 @@
     margin-top: 10px;
     @media(min-width: 401px){
       font-size: 3.142rem; // 44px
-      max-width: 283px;
+      max-width: 255px;
       margin-bottom: 10px;
     }
     &--history {
@@ -34,6 +34,7 @@
     color: $title-color;
     @media(min-width: 401px){
       font-size: 2.357rem; // 33px
+      margin-right: 25px;
     }
   }
   &__form {
@@ -42,16 +43,16 @@
     border-radius: 5px;
     position: relative;
     &--done {
-      position: absolute;
-      top: 100%;
+      background-color: $brand-active;
+      border-radius: 5px;
       bottom: 0;
       left: 0;
+      position: absolute;
       right: 0;
-      background-color: $brand-active;
-      z-index: 4;
-      border-radius: 5px;
       text-align: center;
+      top: 100%;
       transition: 0.5s;
+      z-index: 4;
       &-delete {
         background-color: $brand-alert;
       }
@@ -60,16 +61,18 @@
       top: 0 !important;
       .container__form--icon-done {
         opacity: 1;
+        visibility: visible;
       }
     }
     &--icon-done {
+      left: 50%;
+      opacity: 0;
+      visibility: hidden;
       position: absolute;
       top: 50%;
-      left: 50%;
       transform: translate(-50%,-50%);
-      z-index: 5;
       transition: 1s;
-      opacity: 0;
+      z-index: 5;
     }
     &--text-done {
       color: $brand-info;

@@ -25,11 +25,8 @@
         referenceDay = data;
         weeks = [];
         saturday = $moment(referenceDay).day("Saturday");
-        console.log(saturday);
         days2Saturday = moment(saturday).to(referenceDay, true);
-        console.log(days2Saturday);
         daysToSaturday = parseInt(days2Saturday);
-        console.log(daysToSaturday);
         if(isNaN(daysToSaturday)) {
           if(days2Saturday == 'a day') {
             daysToSaturday = 1;
@@ -68,7 +65,6 @@
         weeks = $.grep(weeks, function(data){
           return data.day != 'Sunday';
         });
-        console.log(weeks);
         return weeks;
       }
       function getLastWeek(days) {

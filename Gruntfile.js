@@ -85,8 +85,9 @@ module.exports = function(grunt) {
             'javascripts/directives/history-items.directive.js',
             'javascripts/directives/calendar-week.directive.js',
             'javascripts/controllers/login.controller.js',
-            'javascripts/controllers/getprojects.controller.js',
-            'javascripts/controllers/gethistory.controller.js'
+            'javascripts/controllers/createCheckin.controller.js',
+            'javascripts/controllers/gethistory.controller.js',
+            'javascripts/controllers/editCheckin.controller.js',
           ]
         }
       }

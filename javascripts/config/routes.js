@@ -9,16 +9,18 @@ angular
     $routeProvider
       .when('/checkin', {
         templateUrl: '/assets/templates/pages/checkin/index.html',
-        controller: 'getProjectsController',
-        controllerAs: 'projectsCtrl'
+        controller: 'createCheckinController',
+        controllerAs: 'checkinCtrl'
       })
       .when('/history', {
         templateUrl: '/assets/templates/pages/history/index.html',
         controller: 'getHistoryController',
         controllerAs: 'historyCtrl'
       })
-      .when('/edit-checkin', {
-        templateUrl: '/assets/templates/pages/checkin/index.html'
+      .when('/edit-checkin/:id', {
+        templateUrl: '/assets/templates/pages/checkin/index.html',
+        controller: 'editCheckinController',
+        controllerAs: 'checkinCtrl'
       })
       .when('/', {
         templateUrl: '/assets/templates/pages/home/index.html',

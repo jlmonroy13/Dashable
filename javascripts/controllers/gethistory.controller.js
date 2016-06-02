@@ -14,7 +14,6 @@
           .then(bindHistory);
       }
       function bindHistory(data) {
-        console.log(data);
         vm.history = data.response;
       }
       getCheckinsHistory();

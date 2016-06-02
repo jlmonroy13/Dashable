@@ -110,6 +110,9 @@
   top: 15px;
   left: -18px;
   cursor: pointer;
+  &:hover {
+    transform: scale(1.4);
+  }
   @media(min-width: 401px){
     top: 30px;
   }
@@ -120,6 +123,9 @@
   top: 15px;
   right: -18px;
   cursor: pointer;
+  &:hover {
+    transform: scale(1.4);
+  }
   @media(min-width: 401px){
     top: 30px;
   }

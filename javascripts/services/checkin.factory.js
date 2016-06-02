@@ -7,14 +7,18 @@
     checkinFactory.$inject = ['$http'];
 
     function checkinFactory($http) {
-      var url     = "http://dashable-netsuite-api-prod.herokuapp.com/",
-          factory = {
+      var url      = "http://dashable-netsuite-api-prod.herokuapp.com/",
+          checkins = [],
+          returnedCheckin,
+          factory  = {
             getUserProjects:      getUserProjects,
             getProjectTask:       getProjectTask,
             getTimeBills:         getTimeBills,
             getCheckinsHistory:   getCheckinsHistory,
             createCheckin:        createCheckin,
-            deleteCheckin:        deleteCheckin
+            deleteCheckin:        deleteCheckin,
+            returnCheckin:        returnCheckin,
+            updateCheckin:        updateCheckin
           };
       return factory;
       
@@ -71,6 +75,8 @@
           }
         };
         return $http(settings).then(function (response){
+          checkins = response.data.response;
+          console.log(checkins);
           return response.data;
         });
       }
@@ -85,6 +91,20 @@
           .then(function (response) {
             return response;
           });
+      }
+      function updateCheckin(id, data) {
+        return $http.put(url+"api/1/time_bills/"+id, data)
+          .then(function (response){
+            return response;
+          });
+      }
+      function returnCheckin(id) {
+        angular.forEach(checkins, function(value, index) {
+          if(value.id == id) {
+            returnedCheckin = value;
+          }
+        });
+        return returnedCheckin;
       }      
     }
 })();

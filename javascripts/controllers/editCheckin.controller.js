@@ -1,15 +1,21 @@
 (function() {
   angular
     .module('CheckIn')
-    .controller('getProjectsController', getProjectsController);
-    getProjectsController.$inject = ['checkinFactory', 'getweeksFactory', '$timeout', '$moment', 'alertify'];
-    function getProjectsController(checkinFactory, getweeksFactory, $timeout, $moment, alertify) {
+    .controller('editCheckinController', editCheckinController); 
+    editCheckinController.$inject = ['checkinFactory', 'getweeksFactory', '$timeout', '$moment', 'alertify', '$routeParams'];
+    function editCheckinController(checkinFactory, getweeksFactory, $timeout, $moment, alertify, $routeParams) {
       var vm                         =   this,
-          referenceDay               =   $moment(),
+          referenceDay,
           checkinTemp,
+          selectedCheckin,
           projectId;
-  
+      
+      vm.leftNavStatus               =   false;
+      vm.textFormTitle               =   "edit"; 
+      vm.textFormButton              =   'save changes';
+      vm.checkinId                   =   $routeParams.id;
       vm.configProjectsSelectize     =   {maxItems: 1};
+      vm.configProjectsSelectize2    =   {maxItems: 1};
       vm.dates                       =   [];
       vm.actualWeek                  =   [];
       vm.lastWeek                    =   [];
@@ -17,10 +23,6 @@
       vm.selectWeek                  =   [];
       vm.changeWeek                  =   changeWeek;
       vm.statusButton                =   true;
-      vm.selectedDate                =   {dateToDisplay: moment().format('dddd, MMM D'),
-                                          day: $moment().format('dddd'),
-                                          numberday: $moment().format('D'),
-                                          dateFormat: $moment().format('YYYY-MM-DD')};
       vm.resetSelectedDates          =   resetSelectedDates;
       vm.createCheckin               =   createCheckin;
       vm.getProjects                 =   getProjects;
@@ -42,7 +44,7 @@
       }
       function displayProjects(data) {
         angular.forEach(data.response, function(value, index) {
-          vm.optionsProjects.push({value: value.id, text: value.name});
+          vm.optionsProjects.push({value: value.id, text: value.name, });
         });
       }
       function getProjectId(response) {
@@ -57,7 +59,7 @@
       }
       function displayTask(data) {
         angular.forEach(data.response, function(value, index) {
-          vm.optionsTask.push({value: value.id, text: value.name});
+          vm.optionsTask.push({value: value.id, text: value.name, selected: true});
         });
         vm.newCheckin.time_bill.task_id = data.response[0].id; //Adding task id to the object for create new checkin
         vm.newCheckin.time_bill.tran_date = vm.selectedDate.dateFormat; //Adding task id to the object for create new checkin
@@ -107,9 +109,10 @@
       }
       function createCheckin() {
         checkinTemp = vm.newCheckin.time_bill;
+        console.log(checkinTemp);
         checkinFormValidation();
         if(checkinTemp.project_id !=='' && checkinTemp.task_id !=='' && checkinTemp.duration !=='' && checkinTemp.tran_date !=='' && checkinTemp.memo !=='') {
-          checkinFactory.createCheckin(vm.newCheckin)
+          checkinFactory.updateCheckin(vm.checkinId,vm.newCheckin)
           .then( function(response) {
             vm.checkinDone = true;
             console.log(response);
@@ -140,7 +143,25 @@
           vm.statusCheckin.memo = false;
         }
       }
+      function getCheckin2beEdited() {
+        console.log(vm.checkinId);
+        selectedCheckin                         = checkinFactory.returnCheckin(vm.checkinId);
+        referenceDay                            = selectedCheckin.date.slice(0,10);
+        vm.projectId                            = selectedCheckin.project.id;
+        vm.newCheckin.time_bill.duration        = selectedCheckin.hours;
+        vm.newCheckin.time_bill.memo            = selectedCheckin.memo;
+        vm.newCheckin.time_bill.project_id      = vm.projectId; 
+        vm.taskId                               = selectedCheckin.task.id; 
+        vm.selectedDate                         = { dateToDisplay: $moment(referenceDay).format('dddd, MMM D'),
+                                                    day: $moment(referenceDay).format('dddd'),
+                                                    numberday: $moment(referenceDay).format('D'),
+                                                    dateFormat: $moment(referenceDay).format('YYYY-MM-DD')
+                                                  };
+        getProjectTask(vm.projectId);
+      }
+
       getLast12Checkins();
-      getProjects(); 
+      getProjects();
+      getCheckin2beEdited(); 
     }
 })(); 
