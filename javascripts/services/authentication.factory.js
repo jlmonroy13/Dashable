@@ -19,8 +19,6 @@
           return GAuth.login().then(getUserInfoAndToken);
         }
         function getUserInfoAndToken() {
-          console.log(GData.getUser());
-          alertify.log('Welcome! you have signed up successfully');
           return GAuth.getToken().then(getJWT);
         }
         function getJWT(token){
@@ -32,6 +30,7 @@
         }
       } 
       function setLocalStorage(key, val) {
+        alertify.log('Welcome! you have signed up successfully');
         return localStorageService.set(key, val);
       }   
     }

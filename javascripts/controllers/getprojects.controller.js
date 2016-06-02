@@ -5,6 +5,7 @@
     getProjectsController.$inject = ['checkinFactory', 'getweeksFactory', '$timeout', '$moment', 'alertify'];
     function getProjectsController(checkinFactory, getweeksFactory, $timeout, $moment, alertify) {
       var vm                         =   this,
+          referenceDay               =   $moment(),
           checkinTemp,
           projectId;
   
@@ -62,7 +63,7 @@
         vm.newCheckin.time_bill.tran_date = vm.selectedDate.dateFormat; //Adding task id to the object for create new checkin
       }                                    
       function get2weeks() {
-        vm.dates = getweeksFactory.get2weeks(); //Generate a calendar array of the last two weeks
+        vm.dates = getweeksFactory.get2weeks(referenceDay); //Generate a calendar array of the last two weeks
       }
       function getLast12Checkins() {  
         checkinFactory.getTimeBills()//Get last 15 checkins from Netsuite API
