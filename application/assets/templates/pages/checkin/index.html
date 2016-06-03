@@ -12,7 +12,7 @@
   </div>
   <div class="container__form">
     <form class="form" action="">
-      <div class="form-padding">
+      <div class="form-padding"> 
         <div class="input__group">
           <selectize options='checkinCtrl.optionsProjects' config="checkinCtrl.configProjectsSelectize" ng-model="checkinCtrl.projectId"  ng-disabled='disable' required='true' ng-change="checkinCtrl.getProjectId(checkinCtrl.projectId)"></selectize>
           <label ng-class="{'active-input-js' : checkinCtrl.projectId !==''}" class="input__label" for="project">project</label>
@@ -54,7 +54,7 @@
     <ul class="navbar navbar-js">
       <li class="navbar__items"><a class="navbar__links" href="/#/checkin"><span ng-class="{'sprite--add-active':checkinCtrl.leftNavStatus }" class="sprite sprite--add margin-right--middle vertical-align navbar__icon"></span><span ng-class="{'navbar__text--color':checkinCtrl.leftNavStatus }" class="navbar__text vertical-align">New Check-in</span></a></li>
       <li class="navbar__items"><a class="navbar__links" href="/#/history"><span ng-class="{'sprite--history-active': !checkinCtrl.leftNavStatus }" class="sprite sprite--history margin-right--middle vertical-align navbar__icon"></span><span ng-class="{'navbar__text--color': !checkinCtrl.leftNavStatus }" class="navbar__text vertical-align">History</span></a></li>
-      <li class="navbar__items"><a class="navbar__links" href="/#/home"><span class="sprite sprite--logout margin-right--middle vertical-align navbar__icon"></span><span class="navbar__text vertical-align">Logout</span></a></li>
+      <li class="navbar__items"><a class="navbar__links" href="/#/"><span class="sprite sprite--logout margin-right--middle vertical-align navbar__icon"></span><span class="navbar__text vertical-align">Logout</span></a></li>
     </ul>
     <div class="form-shadow"></div>
     <div class="container__form--done" ng-class="{'container__form--done-active' : checkinCtrl.checkinDone}">

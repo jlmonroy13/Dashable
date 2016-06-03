@@ -30,7 +30,6 @@
         }
       } 
       function setLocalStorage(key, val) {
-        alertify.log('Welcome! you have signed up successfully');
         return localStorageService.set(key, val);
       }   
     }

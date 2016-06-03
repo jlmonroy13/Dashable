@@ -2,17 +2,27 @@
   angular
     .module('CheckIn')
     .controller('loginController', loginController);
-    loginController.$inject = ['$window', 'authenticationFactory', 'checkinFactory', '$location', 'alertify'];
-    function loginController($window, authenticationFactory, checkinFactory, $location, alertify) {
+    loginController.$inject = ['checkinFactory','$window', 'authenticationFactory', 'checkinFactory', '$location', 'alertify'];
+    function loginController(checkinFactory, $window, authenticationFactory, checkinFactory, $location, alertify) {
       var vm  = this;
       
       vm.login = login; 
 
       function login() {
-        authenticationFactory.login().then(function(data) {
+        authenticationFactory.login().then(getProjects); 
+      }
+      function getProjects(data) {
+        checkinFactory.fetchUserProjects().then(getRecentsCheckins);
+      } 
+      function getRecentsCheckins(){
+        checkinFactory.fetchRecentsCheckins().then(getCheckinsHistory);
+      }
+      function getCheckinsHistory(){
+        checkinFactory.fetchCheckinsHistory().then(function(){
+          alertify.log('Welcome! you have signed up successfully');
           $location.path('/checkin'); 
         });
-      } 
+      }
     }
 })(); 
 

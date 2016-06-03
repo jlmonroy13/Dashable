@@ -6,6 +6,7 @@
     function createCheckinController(checkinFactory, getweeksFactory, $timeout, $moment, alertify, $route) {
       var vm                         =   this,
           referenceDay               =   $moment(), 
+          projects,
           checkinTemp,
           projectId;
       
@@ -19,6 +20,7 @@
       vm.lastWeek                    =   [];
       vm.last12Checkins              =   [];
       vm.selectWeek                  =   [];
+      vm.optionsProjects             =   [];
       vm.changeWeek                  =   changeWeek;
       vm.statusButton                =   true;
       vm.selectedDate                =   {dateToDisplay: moment().format('dddd, MMM D'),
@@ -27,7 +29,6 @@
                                           dateFormat: $moment().format('YYYY-MM-DD')};
       vm.resetSelectedDates          =   resetSelectedDates;
       vm.createCheckin               =   createCheckin;
-      vm.getProjects                 =   getProjects;
       vm.getProjectId                =   getProjectId;
       vm.projectId                   =   '';
       vm.taskId                      =   '';
@@ -42,13 +43,9 @@
                                             memo: ''
                                           }
                                          };
-      function getProjects() {
-        checkinFactory.getUserProjects()
-          .then(displayProjects); 
-      }
-      function displayProjects(data) {
-        console.log(data);
-        angular.forEach(data.response, function(value, index) {
+      function displayProjects() { 
+        projects = checkinFactory.getUserProjects(); 
+        angular.forEach(projects, function(value, index) {
           vm.optionsProjects.push({value: value.id, text: value.name});
         });
       }
@@ -57,7 +54,6 @@
         projectId = response; //it get the response(porjectid) from the selectizer directive
         getProjectTask(projectId);
         vm.newCheckin.time_bill.project_id = projectId; //Adding project id to the object for create new checkin
-
       }
       function getProjectTask(projectId) {
         checkinFactory.getProjectTask(projectId).then(displayTask);
@@ -68,18 +64,15 @@
         });
         vm.newCheckin.time_bill.task_id = data.response[0].id; //Adding task id to the object for create new checkin
         vm.newCheckin.time_bill.tran_date = vm.selectedDate.dateFormat; //Adding task id to the object for create new checkin
-      }                                    
+        console.log(vm.newCheckin.time_bill.tran_date);
+      }
       function get2weeks() {
         vm.dates = getweeksFactory.get2weeks(referenceDay); //Generate a calendar array of the last two weeks
-      }
+      }                                    
       function getLast12Checkins() {  
-        checkinFactory.getTimeBills()//Get last 15 checkins from Netsuite API
-          .then(dateFormat);
-      }
-      function dateFormat(data) { //To be able to compare dates array with checkins array
         get2weeks();
-        vm.last12Checkins = data.response;
-        angular.forEach(vm.last12Checkins, function(checkin, index) { 
+        vm.last12Checkins = checkinFactory.getRecentsCheckins();//Get last 15 checkins from Netsuite API
+        angular.forEach(vm.last12Checkins, function(checkin, index) { //Slice dates to be able to compare dates array with checkins array
           checkin.dateformat = checkin.date.slice(0,10); 
         });
         dayCheckinWasMade(vm.last12Checkins, vm.dates);
@@ -153,6 +146,6 @@
         }
       }
       getLast12Checkins();
-      getProjects(); 
+      displayProjects(); 
     }
 })(); 
