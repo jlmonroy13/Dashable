@@ -1,8 +1,8 @@
 <div class="history__items">
-  <p class="history__date">{{vm.checkins.date |  date:'medium'}}</p>
+  <p class="history__date">{{vm.checkins.date |  date:'mediumDate'}}</p>
   <div class="history__info">
     <div class="history__hours">
-      <span class="history__hours-data">{{vm.checkins.hours | number:0}}</span>
+      <span class="history__hours-data">{{vm.checkins.hours | number:1}}</span>
     </div><!-- 
  --><div class="history__description">
       <p class="history__work-on">{{vm.checkins.memo}}</p>

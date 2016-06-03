@@ -21,7 +21,7 @@
       max-width: 160px;
       @media(min-width: 401px){
         font-size: 3.142rem; // 44px
-            max-width: 244px;
+        max-width: 244px;
         margin-bottom: 10px;
       }
     }
@@ -34,7 +34,7 @@
     color: $title-color;
     @media(min-width: 401px){
       font-size: 2.357rem; // 33px
-      margin-right: 25px;
+      margin-right: 33px;
     }
   }
   &__form {

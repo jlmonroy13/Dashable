@@ -7,8 +7,9 @@
     checkinFactory.$inject = ['$http'];
 
     function checkinFactory($http) {
-      var url      = "http://dashable-netsuite-api-prod.herokuapp.com/",
-          checkins = [],
+      var url      = "http://dashable-netsuite-api-prod.herokuapp.com/api/1",
+          checkinsHistory = [],
+          projects        = [],
           returnedCheckin,
           factory  = {
             getUserProjects:      getUserProjects,
@@ -23,83 +24,48 @@
       return factory;
       
       function getUserProjects() {
-        var settings = {
-          "async": true,
-          "crossDomain": true,
-          "url": url+"api/1/projects",
-          "method": "GET",
-          "headers": {
-            "content-type": "application/json"
-          }
-        };
-        return $http(settings).then(function (response){
-          return response.data;
+        return $http.get(url+"/projects").then(function (promise){
+          projects = promise.data.response;
+          console.log(projects);
+          return promise.data;
         });
       }
       function getProjectTask(projectID) {
-        var settings = { 
-          "async": true,
-          "crossDomain": true,
-          "url": url+"api/1/projects/"+projectID+"/tasks",
-          "method": "GET",
-          "headers": {
-            "content-type": "application/json"
-          }
-        };
-        return $http(settings).then(function (response){
+        return $http.get(url+"/projects/"+projectID+"/tasks").then(function (response){
           return response.data;
         });
       }
       function getTimeBills() {
-        var settings = { 
-          "async": true,
-          "crossDomain": true,
-          "url": url+"api/1/time_bills/recent",
-          "method": "GET",
-          "headers": {
-            "content-type": "application/json"
-          }
-        };
-        return $http(settings).then(function (response){
+        return $http.get(url+"/time_bills/recent").then(function (response){
           return response.data;
         });
       }
       function getCheckinsHistory() {
-        var settings = { 
-          "async": true,
-          "crossDomain": true,
-          "url": url+"api/1/time_bills/history",
-          "method": "GET",
-          "headers": {
-            "content-type": "application/json"
-          }
-        };
-        return $http(settings).then(function (response){
-          checkins = response.data.response;
-          console.log(checkins);
+        return $http.get(url+"/time_bills/history").then(function (response){
+          checkinsHistory = response.data.response;
           return response.data;
         });
       }
       function createCheckin(data) {
-        return $http.post(url+"api/1/time_bills", data)
+        return $http.post(url+"/time_bills", data)
           .then(function (response){
             return response;
           });
       }
       function deleteCheckin(data) {
-        return $http.delete(url+"api/1/time_bills/"+data)
+        return $http.delete(url+"/time_bills/"+data)
           .then(function (response) {
             return response;
           });
       }
       function updateCheckin(id, data) {
-        return $http.put(url+"api/1/time_bills/"+id, data)
+        return $http.put(url+"/time_bills/"+id, data)
           .then(function (response){
             return response;
           });
       }
       function returnCheckin(id) {
-        angular.forEach(checkins, function(value, index) {
+        angular.forEach(checkinsHistory, function(value, index) {
           if(value.id == id) {
             returnedCheckin = value;
           }

@@ -2,8 +2,8 @@
   angular
     .module("CheckIn")
     .directive('historyItems', historyItems);
-    historyItems.$inject = ['checkinFactory', 'alertify'];
-    function historyItems(checkinFactory, alertify) { 
+    historyItems.$inject = ['checkinFactory', 'alertify', '$timeout', '$location', '$route'];
+    function historyItems(checkinFactory, alertify, $timeout, $location, $route) { 
       var directive = {
         restrict: 'E',
         templateUrl: '/assets/templates/pages/history/history-items.html',
@@ -45,6 +45,9 @@
                   .then(function(response) {
                     console.log(response);
                     vm.deleteStatus = true;
+                    $timeout(function() {
+                      $route.reload();
+                    }, 4000);
                   });  
               }, 
               function onCancel() {}

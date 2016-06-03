@@ -2,8 +2,8 @@
   angular
     .module('CheckIn')
     .controller('createCheckinController', createCheckinController);
-    createCheckinController.$inject = ['checkinFactory', 'getweeksFactory', '$timeout', '$moment', 'alertify'];
-    function createCheckinController(checkinFactory, getweeksFactory, $timeout, $moment, alertify) {
+    createCheckinController.$inject = ['checkinFactory', 'getweeksFactory', '$timeout', '$moment', 'alertify', '$route'];
+    function createCheckinController(checkinFactory, getweeksFactory, $timeout, $moment, alertify, $route) {
       var vm                         =   this,
           referenceDay               =   $moment(), 
           checkinTemp,
@@ -43,11 +43,11 @@
                                           }
                                          };
       function getProjects() {
-        console.log(vm.statusCheckin.duration);
         checkinFactory.getUserProjects()
           .then(displayProjects); 
       }
       function displayProjects(data) {
+        console.log(data);
         angular.forEach(data.response, function(value, index) {
           vm.optionsProjects.push({value: value.id, text: value.name});
         });
@@ -110,7 +110,6 @@
         angular.forEach(vm.dates, function(date, index) {
           date.selected = false;
         });
-        // console.log(vm.newCheckin);
       }
       function createCheckin() {
         checkinTemp = vm.newCheckin.time_bill;
@@ -120,6 +119,12 @@
           .then( function(response) {
             vm.checkinDone = true;
             console.log(response);
+            $timeout(function() { 
+              $route.reload();
+            }, 4000);
+          })
+          .catch(function(data){
+            console.log(data);
           });
         }else {
           alertify.error("You have to complete all fields!");

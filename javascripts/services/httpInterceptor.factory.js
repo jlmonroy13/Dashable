@@ -10,7 +10,10 @@
         request: function($config) {
           var jwt = localStorageService.get('jwt');
             if (jwt !== '') {
-              $config.headers['Authorization'] = 'Bearer '+jwt;
+              $config.async                     = true;
+              $config.crossDomain               = true;
+              $config.headers['Authorization']  = 'Bearer '+jwt;
+              $config.headers['content-type']   = 'application/json';
             }
             return $config;
         }

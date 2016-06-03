@@ -2,8 +2,8 @@
   angular
     .module('CheckIn')
     .controller('editCheckinController', editCheckinController); 
-    editCheckinController.$inject = ['checkinFactory', 'getweeksFactory', '$timeout', '$moment', 'alertify', '$routeParams'];
-    function editCheckinController(checkinFactory, getweeksFactory, $timeout, $moment, alertify, $routeParams) {
+    editCheckinController.$inject = ['checkinFactory', 'getweeksFactory', '$timeout', '$moment', 'alertify', '$routeParams', '$location'];
+    function editCheckinController(checkinFactory, getweeksFactory, $timeout, $moment, alertify, $routeParams, $location) {
       var vm                         =   this,
           referenceDay,
           checkinTemp,
@@ -107,7 +107,7 @@
         });
         // console.log(vm.newCheckin);
       }
-      function createCheckin() {
+      function createCheckin() {  
         checkinTemp = vm.newCheckin.time_bill;
         console.log(checkinTemp);
         checkinFormValidation();
@@ -116,6 +116,9 @@
           .then( function(response) {
             vm.checkinDone = true;
             console.log(response);
+            $timeout(function() {
+              $location.path('/history'); 
+            }, 4000);
           });
         }else {
           alertify.error("You have to complete all fields!");
