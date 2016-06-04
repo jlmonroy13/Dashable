@@ -84,6 +84,7 @@ module.exports = function(grunt) {
             'javascripts/services/getweeks.factory.js',
             'javascripts/directives/history-items.directive.js',
             'javascripts/directives/calendar-week.directive.js',
+            'javascripts/directives/elastic-textarea.directive.js',
             'javascripts/controllers/login.controller.js',
             'javascripts/controllers/createCheckin.controller.js',
             'javascripts/controllers/gethistory.controller.js',

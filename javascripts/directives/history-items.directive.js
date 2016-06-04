@@ -4,7 +4,7 @@
     .directive('historyItems', historyItems);
     historyItems.$inject = ['checkinFactory', 'alertify', '$timeout', '$location', '$route'];
     function historyItems(checkinFactory, alertify, $timeout, $location, $route) { 
-      var directive = {
+      var directive = { 
         restrict: 'E',
         templateUrl: '/assets/templates/pages/history/history-items.html',
         bindToController: {
@@ -45,8 +45,12 @@
                   .then(function(response) {
                     console.log(response);
                     vm.deleteStatus = true;
+                    checkinFactory.fetchCheckinsHistory();
                     $timeout(function() {
-                      $route.reload();
+                      vm.deleteStatus = false;
+                      $timeout(function() {
+                        $route.reload();
+                      }, 300);
                     }, 4000);
                   });  
               }, 

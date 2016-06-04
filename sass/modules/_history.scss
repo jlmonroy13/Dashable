@@ -26,8 +26,9 @@
   }
   &__hours {
   	display: inline-block;
-  	width: 16%;
+  	width: 12%;
   	vertical-align: top;
+    text-align: center;
   }
   &__hours-data {
   	color: $navbar-primary;
@@ -35,7 +36,7 @@
   }
   &__description {
   	display: inline-block;
-  	width: 84%;
+  	width: 88%;
   }
   &__work-on {
 		margin: 5px 0;

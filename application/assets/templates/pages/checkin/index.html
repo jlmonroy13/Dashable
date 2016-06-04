@@ -19,7 +19,7 @@
           <p class="input__alert" ng-show="checkinCtrl.statusCheckin.project"><span class="margin-right--smaller sprite sprite--alert"></span>You have to select a project!</p>
         </div>
         <div class="input__group input__group--large">
-          <selectize options='checkinCtrl.optionsTask' config="checkinCtrl.configProjectsSelectize2" ng-model="checkinCtrl.taskId" ng-disabled='disable' required='true'></selectize>
+          <selectize options='checkinCtrl.optionsTask' config="checkinCtrl.configProjectsSelectize2" ng-model="checkinCtrl.taskId" ng-disabled='disable' required='true' ng-change="checkinCtrl.getTaskId(checkinCtrl.taskId)"></selectize>
           <label ng-class="{'active-input-js' : checkinCtrl.taskId !==''}" class="input__label" for="task">task</label>
           <p class="input__alert" ng-show="checkinCtrl.statusCheckin.task"><span class="margin-right--smaller sprite sprite--alert"></span>You have to select a task!</p>
           </div><!-- 
@@ -29,7 +29,7 @@
           <p class="input__alert" ng-show="checkinCtrl.statusCheckin.duration"><span class="margin-right--smaller sprite sprite--alert"></span>It requires a num!</p>
         </div>
         <div class="input__group">
-          <textarea ng-click="effect1=true" ng-blur="effect1=false" ng-init="effect1=false" name="" class="textarea input input-js input--height" ng-model="checkinCtrl.newCheckin.time_bill.memo"></textarea>
+          <textarea elastic ng-click="effect1=true" ng-blur="effect1=false" ng-init="effect1=false" name="" class="textarea input input-js input--height" ng-model="checkinCtrl.newCheckin.time_bill.memo"></textarea>
           <label ng-class="{'active-input-js' : effect1 || checkinCtrl.newCheckin.time_bill.memo !==''}" class="input__label" for="workon">what did you work on?</label>
           <p class="input__alert" ng-show="checkinCtrl.statusCheckin.memo"><span class="margin-right--smaller sprite sprite--alert"></span>This input requires a value!</p>
         </div>

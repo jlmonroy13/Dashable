@@ -12,11 +12,8 @@
         authenticationFactory.login().then(getProjects); 
       }
       function getProjects(data) {
-        checkinFactory.fetchUserProjects().then(getRecentsCheckins);
+        checkinFactory.fetchUserProjects().then(getCheckinsHistory);
       } 
-      function getRecentsCheckins(){
-        checkinFactory.fetchRecentsCheckins().then(getCheckinsHistory);
-      }
       function getCheckinsHistory(){
         checkinFactory.fetchCheckinsHistory().then(function(){
           alertify.log('Welcome! you have signed up successfully');

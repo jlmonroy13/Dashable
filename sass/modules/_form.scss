@@ -161,6 +161,7 @@ select {
   z-index: 1;
 }
 .textarea {
+  max-height: 100px;
   &::-webkit-scrollbar {
     width: 5px; 
     background-color: transparent; 

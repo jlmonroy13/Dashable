@@ -15,6 +15,7 @@
           referenceDay,
           days2Saturday,
           weeks = [],
+          today,
           factory = {
             get2weeks: get2weeks
           };
@@ -59,12 +60,19 @@
           day = $moment(referenceDay).add(i, 'days').format('dddd');
           numberDay = $moment(referenceDay).add(i, 'days').format('D');
           dateToDisplay = $moment(referenceDay).add(i, 'days').format('dddd, MMM D');
-          weeks.unshift({day: day, numberday: numberDay, dateToDisplay: dateToDisplay, date: date, selected: false, checkin: false, future: true});
+          weeks.unshift({day: day, numberday: numberDay, dateToDisplay: dateToDisplay, date: date, selected: false, checkin: false, future: false});
         }
         //Delete Sundays
         weeks = $.grep(weeks, function(data){
           return data.day != 'Sunday';
         });
+        today = $moment().format('YYYY-MM-DD');
+        angular.forEach(weeks, function(day, index) { //Slice dates to be able to compare dates array with checkins array
+          if(day.date > today) {
+            day.future = true;
+          }
+        });
+        console.log(weeks);
         return weeks;
       }
       function getLastWeek(days) {

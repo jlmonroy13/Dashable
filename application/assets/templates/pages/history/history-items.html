@@ -1,12 +1,12 @@
 <div class="history__items">
-  <p class="history__date">{{vm.checkins.date |  date:'mediumDate'}}</p>
+  <p class="history__date">{{vm.checkins.date | date:'mediumDate'}}</p>
   <div class="history__info">
     <div class="history__hours">
-      <span class="history__hours-data">{{vm.checkins.hours | number:1}}</span>
+      <span class="history__hours-data">{{vm.checkins.hours}}</span>
     </div><!-- 
  --><div class="history__description">
-      <p class="history__work-on">{{vm.checkins.memo}}</p>
-      <span class="history__area">{{vm.checkins.project.name}} · </span><span class="history__area margin-right--middle">{{vm.checkins.task.name}} </span>
+      <p class="history__work-on padding-left--small">{{vm.checkins.memo}}</p>
+      <span class="history__area padding-left--small">{{vm.checkins.project.name}} · </span><span class="history__area margin-right--middle">{{vm.checkins.task.name}} </span>
       <a ng-href="#/edit-checkin/{{vm.checkins.id}}" class="history__buttons history__buttons--line" ng-show="!vm.checkins.supervisor_approval" >Edit</a>
       <a href="" class="history__buttons" ng-show="!vm.checkins.supervisor_approval" ng-click="vm.removeCheckin(vm.checkins)">Remove</a>
     </div>
